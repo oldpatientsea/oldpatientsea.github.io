@@ -5,8 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.12">
-<meta name="author" content="Adapted from BBC BASIC (Z80) © Doug Mounter and Richard Russell 2009, and Dean Belfield&#8217;s Wiki">
-<title>BBC BASIC (Z80) for the Agon light™</title>
+<title>R. T. RUSSELL</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -441,138 +440,1557 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article">
 <div id="header">
-<h1>BBC BASIC (Z80) for the Agon light™</h1>
-<div class="details">
-<span id="author" class="author">Adapted from BBC BASIC (Z80) © Doug Mounter and Richard Russell 2009, and Dean Belfield&#8217;s Wiki</span><br>
-</div>
 </div>
 <div id="content">
 <div class="sect1">
-<h2 id="_introduction">Introduction</h2>
+<h2 id="_r_t_russell">R. T. RUSSELL</h2>
 <div class="sectionbody">
-<div class="quoteblock">
-<blockquote>
-When the bird and the book disagree, believe the bird.
-</blockquote>
-<div class="attribution">
-&#8212; John James Audubon<br>
-<cite>The Birds of America</cite>
-</div>
-</div>
-<div class="paragraph">
-<p>This document is an adaptation of R.T. Russell&#8217;s <a href="https://www.bbcbasic.co.uk/bbcbasic/mancpm/index.html">BBC BASIC (Z80) Manual</a> to describe the implementation of BBC BASIC on the Agon light™ and AgonLight 2. It is made with the permission of the original author, using information from <a href="https://github.com/breakintoprogram/agon-docs/wiki/BBC-BASIC-for-Agon">Dean Belfield&#8217;s wiki</a> with his consent.</p>
-</div>
-<div class="paragraph">
-<p>The Agon light™ is an open source, eZ80-based single board computer and microcontroller designed by Bernardo Kastrup. The names "Agon" and "Agon Light" in this document refer equally to Bernardo&#8217;s original design, his forthcoming Origins collector&#8217;s edition, and to the re-engineered AgonLight 2 by Tsvetan Usunov, owner of Olimex Ltd. All use the same firmware. The names do not refer to a possible Agon 65X which is being designed at the moment by Kyle Cardoza and will, if it is released, have a 6502-series CPU, the W65C265S. BBC BASIC (Z80) requires a Z80 processor. BASIC in this document, unless otherwise specified, refers to BBC BASIC (Z80) for the Agon light™.</p>
-</div>
-<div class="paragraph">
-<p>The original BBC BASIC (Z80) Manual includes contributions from Doug Mounter who wrote adaptations for the Z88 and Tatung Einstein. R.T. Russell, Doug Mounter, Dean Belfield, Bernardo Kastrup and Tsvetan Usunov retain any and all original copyrights to and trademarks for their work.</p>
-</div>
-<div class="paragraph">
-<p>This first draft has been collated by Tim Delmare from information shared by the Agon Light community. Any mistakes are mine. When the code and the document disagree, believe the code.</p>
+<div class="sect2">
+<h3 id="_bbc_basic_z80_manual">BBC BASIC (Z80) Manual</h3>
+
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_a_brief_history_of_agon_basic">A Brief History of Agon BASIC</h2>
+<h2 id="_table_of_contents">Table of Contents</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>BASIC (Beginner&#8217;s All-purpose Symbolic Instruction Code) was born in 1964 at Dartmouth College, New Hampshire along with DTSS, the Dartmouth Time Sharing System on which it ran, the work respectively of two brilliant mathematicians, professors John Kemeny and Thomas Kurtz.</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong><a href="bbc1.html">Introduction</a></strong></p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p><a href="bbc1.html#beforestart">Before You Start</a></p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p><a href="bbc1.html#requirements">System Requirements</a></p>
+</li>
+<li>
+<p><a href="bbc1.html#technicalities">Technicalities</a></p>
+</li>
+<li>
+<p><a href="bbc1.html#configuration">Configuration</a></p>
+</li>
+</ol>
 </div>
-<div class="paragraph">
-<p>Immediately popular, the language proliferated and later saw an explosion of different dialects during the home computer boom of the 80s, a period of creativity within tight constraints that retains a particular charm for many. Kemeny and Kurtz were less impressed. "We are greatly concerned that a generation of students is growing up learning Street BASIC, an illiterate dialect of a lovely language."</p>
+</li>
+<li>
+<p><a href="bbc1.html#running">Running BBC BASIC (Z80)</a></p>
+</li>
+</ol>
 </div>
-<div class="paragraph">
-<p>If any BASIC deserved this scorn, one dialect in particular did not: BBC BASIC.</p>
+</li>
+<li>
+<p><strong><a href="bbc2.html">General Information</a></strong></p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p><a href="bbc2.html#introduction">Introduction</a></p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p><a href="bbc2.html#linenumbers">Line Numbers</a></p>
+</li>
+<li>
+<p><a href="bbc2.html#separators">Statement Separators</a></p>
+</li>
+</ol>
 </div>
-<div class="paragraph">
-<p>The original version of BBC BASIC was written by Sophie Wilson at Acorn in 1981 for the BBC Micro range of computers, and was designed to support the UK Computer Literacy Project. R.T. Russell was involved in the specification of BBC BASIC, and wrote his own Z80 version, BBC BASIC (Z80), that was subsequently ported to a number of Z80 based machines. Many years later, he made it open source under a zlib licence.</p>
+</li>
+<li>
+<p><a href="bbc2.html#editing">The Line Editor</a></p>
+</li>
+<li>
+<p><a href="bbc2.html#expression">Expression Priority</a></p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p><a href="bbc2.html#evaluation">Order of Evaluation</a></p>
+</li>
+<li>
+<p><a href="bbc2.html#examples">Examples</a></p>
+</li>
+</ol>
 </div>
-<div class="paragraph">
-<p>In 2022, Dean Belfield began work on the QUARK firmware for the Agon light™. The firmware consists of three parts: Agon MOS for the eZ80, the CPU driving the machine; Agon VDP for the ESP32-PICO-D4 that handles video and audio as well as managing keyboard input; and, BBC BASIC for Agon, a new port of BBC BASIC (Z80) with a number of modifications to make it run on this specific hardware. The same firmware runs on the AgonLight 2.</p>
+</li>
+<li>
+<p><a href="bbc2.html#variables">Variables</a></p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p><a href="bbc2.html#specification">Specification</a></p>
+</li>
+<li>
+<p><a href="bbc2.html#numeric">Numeric Variables</a></p>
+<div class="olist upperalpha">
+<ol class="upperalpha" type="A">
+<li>
+<p><a href="bbc2.html#real">Real Variables</a></p>
+</li>
+<li>
+<p><a href="bbc2.html#integer">Integer Variables</a></p>
+</li>
+<li>
+<p><a href="bbc2.html#static">Static Variables</a></p>
+</li>
+<li>
+<p><a href="bbc2.html#boolean">Boolean Variables</a></p>
+</li>
+<li>
+<p><a href="bbc2.html#accuracy">Numeric Accuracy</a></p>
+</li>
+</ol>
 </div>
-<div class="paragraph">
-<p>The current version of BBC BASIC for Agon is v1.04.</p>
+</li>
+<li>
+<p><a href="bbc2.html#stringsetc">String Variables and Garbage</a></p>
+<div class="olist upperalpha">
+<ol class="upperalpha" type="A">
+<li>
+<p><a href="bbc2.html#strings">Strings</a></p>
+</li>
+<li>
+<p><a href="bbc2.html#garbage">Garbage Generation</a></p>
+</li>
+<li>
+<p><a href="bbc2.html#memory">Memory Allocation</a></p>
+</li>
+</ol>
 </div>
+</li>
+<li>
+<p><a href="bbc2.html#arrays">Arrays</a></p>
+</li>
+</ol>
 </div>
+</li>
+<li>
+<p><a href="bbc2.html#programflow">Program Flow Control</a></p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p><a href="bbc2.html#flowintro">Introduction</a></p>
+</li>
+<li>
+<p><a href="bbc2.html#looperrors">Loop Operation Errors</a></p>
+</li>
+<li>
+<p><a href="bbc2.html#structure">Program Structure Limitations</a></p>
+</li>
+<li>
+<p><a href="bbc2.html#leavingloops">Leaving Program Loops</a></p>
+<div class="olist upperalpha">
+<ol class="upperalpha" type="A">
+<li>
+<p><a href="bbc2.html#repeatuntil">REPEAT&#8230;&#8203;UNTIL Loops</a></p>
+</li>
+<li>
+<p><a href="bbc2.html#changing">Changing the Loop Variable</a></p>
+</li>
+<li>
+<p><a href="bbc2.html#popping">Popping the Inner Variable</a></p>
+</li>
+</ol>
 </div>
-<div class="sect1">
-<h2 id="_before_you_start">Before You Start</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>This is a reference manual, it is not intended to teach you BASIC. It gives a summary of the BBC BASIC commands and functions plus some hints and tips on their use. A general knowledge of BASIC has been assumed.</p>
+</li>
+<li>
+<p><a href="bbc2.html#localstack">Local Variables</a></p>
+</li>
+<li>
+<p><a href="bbc2.html#stack">Stack Pointer</a></p>
+</li>
+</ol>
 </div>
-<div class="paragraph">
-<p>BBC BASIC (Z80) has been designed to be as compatible as possible with the 6502 BBC BASIC resident in the BBC Microcomputer. The language syntax is not always completely identical to that of the 6502 version, but in most cases the Z80 version is more tolerant.</p>
+</li>
+<li>
+<p><a href="bbc2.html#indirection">Indirection</a></p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p><a href="bbc2.html#indirintro">Introduction</a></p>
+</li>
+<li>
+<p><a href="bbc2.html#query">Query</a></p>
+<div class="olist upperalpha">
+<ol class="upperalpha" type="A">
+<li>
+<p><a href="bbc2.html#byte">Byte Access</a></p>
+</li>
+<li>
+<p><a href="bbc2.html#bytequery">Query as a Byte Variable</a></p>
+</li>
+</ol>
 </div>
-<div class="paragraph">
-<p>Agon BBC BASIC is comparable with BBC BASIC IV and most simple listings for the BBC Micro can be adapted with a little work, although there are differences in the graphics modes and in the handling of sound.</p>
+</li>
+<li>
+<p><a href="bbc2.html#exclamation">Exclamation</a></p>
+</li>
+<li>
+<p><a href="bbc2.html#dollar">Dollar</a></p>
+</li>
+<li>
+<p><a href="bbc2.html#binaryoperators">Use as Binary Operators</a></p>
+</li>
+<li>
+<p><a href="bbc2.html#powerofindirection">Power of Indirection Operators</a></p>
+</li>
+</ol>
 </div>
-<div class="paragraph">
-<p>About 15 Kbytes of code space and about 1 Kbyte of data space are used by the interpreter. The remainder of the TPA is available for the user&#8217;s program, data (heap) and stack.</p>
+</li>
+<li>
+<p><a href="bbc2.html#operators">Operators and Special Symbols</a></p>
+</li>
+<li>
+<p><a href="bbc2.html#keywords">Keywords</a></p>
+</li>
+<li>
+<p><a href="bbc2.html#errorhandling">Error Handling</a></p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p><a href="bbc2.html#errorintro">Introduction</a></p>
+<div class="olist upperalpha">
+<ol class="upperalpha" type="A">
+<li>
+<p><a href="bbc2.html#errortypes">Types of Errors</a></p>
+</li>
+<li>
+<p><a href="bbc2.html#trapping">Trapping Errors</a></p>
+</li>
+<li>
+<p><a href="bbc2.html#reasons">Reasons for Trapping Errors</a></p>
+</li>
+</ol>
 </div>
-<div class="paragraph">
-<p>Those familiar with BBC BASIC on RISC OS may notice some omissions such as the absence of CASE-OF-WHEN-OTHERWISE-ENDCASE in Agon BBC BASIC. The Acorn Archimedes used a 32-bit ARM CPU and removed the 16 KB limit on the BASIC code size, allowing new features to be added in BBC BASIC V which is the version still used in RISC OS. Agon BASIC is still under development and future versions may add some of these missing BBC BASIC V features.</p>
+</li>
+<li>
+<p><a href="bbc2.html#errortrapping">Error Trapping Commands</a></p>
+</li>
+<li>
+<p><a href="bbc2.html#errorreporting">Error Reporting</a></p>
+<div class="olist upperalpha">
+<ol class="upperalpha" type="A">
+<li>
+<p><a href="bbc2.html#err">ERR</a></p>
+</li>
+<li>
+<p><a href="bbc2.html#erl">ERL</a></p>
+</li>
+<li>
+<p><a href="bbc2.html#report">REPORT</a></p>
+</li>
+</ol>
 </div>
+</li>
+<li>
+<p><a href="bbc2.html#errorexamples">Error Trapping Examples</a></p>
+</li>
+</ol>
 </div>
+</li>
+<li>
+<p><a href="bbc2.html#procedures">Procedures and Functions</a></p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p><a href="bbc2.html#procintro">Introduction</a></p>
+</li>
+<li>
+<p><a href="bbc2.html#names">Names</a></p>
+</li>
+<li>
+<p><a href="bbc2.html#definitions">Functions and Procedure Definitions</a></p>
+<div class="olist upperalpha">
+<ol class="upperalpha" type="A">
+<li>
+<p><a href="bbc2.html#starting">Starting a Definition</a></p>
+</li>
+<li>
+<p><a href="bbc2.html#body">The Function/Procedure Body</a></p>
+</li>
+<li>
+<p><a href="bbc2.html#ending">Ending a Definition</a></p>
+</li>
+<li>
+<p><a href="bbc2.html#singleline">Single Line Functions/Procedures</a></p>
+</li>
+<li>
+<p><a href="bbc2.html#extending">Extending the Language</a></p>
+</li>
+</ol>
 </div>
-<div class="sect1">
-<h2 id="_system_requirements">System Requirements</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>This document describes <a href="https://github.com/breakintoprogram/agon-bbc-basic/releases/tag/v1.04">v1.04 of Agon BBC BASIC</a>. In order to run this version, you must be using AGON QUARK Firmware v1.03 (MOS v1.03 on the eZ80 and VDP v1.03 on the ESP32).</p>
+</li>
+<li>
+<p><a href="bbc2.html#parameters">Passing Parameters</a></p>
+<div class="olist upperalpha">
+<ol class="upperalpha" type="A">
+<li>
+<p><a href="bbc2.html#formalactual">Formal and Actual Parameters</a></p>
+</li>
+</ol>
 </div>
-<div class="paragraph">
-<p>Where possible, differences between BASIC versions are noted however if you are running an earlier version of the firmware and BASIC you are recommended to follow the <a href="https://github.com/breakintoprogram/agon-docs/wiki/Updating-Firmware">instructions for updating online</a>.</p>
+</li>
+<li>
+<p><a href="bbc2.html#localvariables">Local Variables</a></p>
+<div class="olist upperalpha">
+<ol class="upperalpha" type="A">
+<li>
+<p><a href="bbc2.html#reentrant">Re-entrant Functions/Procedures</a></p>
+</li>
+</ol>
 </div>
+</li>
+</ol>
 </div>
+</li>
+</ol>
 </div>
-<div class="sect1">
-<h2 id="_set_up">Set Up</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>It is assumed that you have already setup your Agon Light, have a microSD card inserted that is formatted and ready to use with <a href="https://github.com/breakintoprogram/agon-bbc-basic/releases/tag/v1.04">v1.04 of Agon BBC BASIC</a> copied to it.</p>
+</li>
+<li>
+<p><strong><a href="bbc3.html">Assembler</a></strong></p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p><a href="bbc3.html#introduction">Introduction</a></p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p><a href="bbc3.html#mnemonics">Instruction mnemonics</a></p>
+</li>
+<li>
+<p><a href="bbc3.html#statements">Statements</a></p>
+</li>
+<li>
+<p><a href="bbc3.html#labels">Labels</a></p>
+</li>
+<li>
+<p><a href="bbc3.html#comments">Comments</a></p>
+</li>
+<li>
+<p><a href="bbc3.html#constants">Constants</a></p>
+<div class="olist upperalpha">
+<ol class="upperalpha" type="A">
+<li>
+<p><a href="bbc3.html#byte">Define Byte - DEFB</a></p>
+</li>
+<li>
+<p><a href="bbc3.html#word">Define Word - DEFW</a></p>
+</li>
+<li>
+<p><a href="bbc3.html#defm">Define Message - DEFM</a></p>
+</li>
+</ol>
 </div>
+</li>
+</ol>
 </div>
+</li>
+<li>
+<p><a href="bbc3.html#reserving">Reserving Memory</a></p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p><a href="bbc3.html#programcounter">The Program Counter</a></p>
+</li>
+<li>
+<p><a href="bbc3.html#usingdim">Using DIM to Reserve Memory</a></p>
+</li>
+<li>
+<p><a href="bbc3.html#movinghimem">Moving HIMEM to Reserve Memory</a></p>
+</li>
+<li>
+<p><a href="bbc3.html#length">Length of Reserved Memory</a></p>
+</li>
+<li>
+<p><a href="bbc3.html#initial">Initial Setting of the Program Counter</a></p>
+</li>
+</ol>
 </div>
-<div class="sect1">
-<h2 id="_running_bbc_basic_z80_for_agon">Running BBC BASIC (Z80) for Agon</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>To run BBC BASIC (Z80) for Agon, from the MOS prompt type</p>
+</li>
+<li>
+<p><a href="bbc3.html#process">The Assembly Process</a></p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p><a href="bbc3.html#opt">OPT</a></p>
+</li>
+<li>
+<p><a href="bbc3.html#different">Assembly at a Different Address</a></p>
+</li>
+<li>
+<p><a href="bbc3.html#summary">OPT Summary</a></p>
+<div class="olist upperalpha">
+<ol class="upperalpha" type="A">
+<li>
+<p><a href="bbc3.html#codeatp">Code Assembled Starting at P%</a></p>
+</li>
+<li>
+<p><a href="bbc3.html#codeato">Code Assembled Starting at O%</a></p>
+</li>
+</ol>
 </div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-console" data-lang="console">&gt;LOAD bbcbasic.bin
-&gt;RUN</code></pre>
+</li>
+<li>
+<p><a href="bbc3.html#how">How the Assembler Works</a></p>
+</li>
+<li>
+<p><a href="bbc3.html#saveload">Saving and Loading Machine Code Programs</a></p>
+<div class="olist upperalpha">
+<ol class="upperalpha" type="A">
+<li>
+<p><a href="bbc3.html#save">*SAVE</a></p>
+</li>
+<li>
+<p><a href="bbc3.html#load">*LOAD</a></p>
+</li>
+</ol>
 </div>
+</li>
+</ol>
 </div>
-<div class="paragraph">
-<p>The system will reply:</p>
+</li>
+<li>
+<p><a href="bbc3.html#condmacro">Conditional Assembly and Macros</a></p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p><a href="bbc3.html#condintro">Introduction</a></p>
+</li>
+<li>
+<p><a href="bbc3.html#conditional">Conditional Assembly</a></p>
+</li>
+<li>
+<p><a href="bbc3.html#macros">Macros</a></p>
+</li>
+</ol>
 </div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-console" data-lang="console">BBC BASIC (Z80) Version 3.00
-(C) Copyright R.T.Russell 1987</code></pre>
+</li>
+</ol>
 </div>
+</li>
+<li>
+<p><strong><a href="bbckey0.html">Statements and Functions</a></strong></p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p><a href="bbckey0.html#introduction">Introduction</a></p>
+</li>
+<li>
+<p><a href="bbckey0.html#syntax">Syntax</a></p>
+</li>
+<li>
+<p><a href="bbckey0.html#symbols">Symbols</a></p>
+</li>
+<li>
+<p><a href="bbckey1.html#abs">ABS</a></p>
+</li>
+<li>
+<p><a href="bbckey1.html#acs">ACS</a></p>
+</li>
+<li>
+<p><a href="bbckey1.html#adval">ADVAL</a></p>
+</li>
+<li>
+<p><a href="bbckey1.html#and">AND</a></p>
+</li>
+<li>
+<p><a href="bbckey1.html#asc">ASC</a></p>
+</li>
+<li>
+<p><a href="bbckey1.html#asn">ASN</a></p>
+</li>
+<li>
+<p><a href="bbckey1.html#atn">ATN</a></p>
+</li>
+<li>
+<p><a href="bbckey1.html#auto">AUTO</a></p>
+</li>
+<li>
+<p><a href="bbckey1.html#bget">BGET#</a></p>
+</li>
+<li>
+<p><a href="bbckey1.html#bput">BPUT#</a></p>
+</li>
+<li>
+<p><a href="bbckey1.html#call">CALL</a></p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p><a href="bbckey1.html#callparms">Parameter Table</a></p>
+</li>
+<li>
+<p><a href="bbckey1.html#callformats">Parameter Formats</a></p>
+</li>
+</ol>
 </div>
-<div class="paragraph">
-<p>Note, MOS automatically runs the contents of the AUTOEXEC.TXT file found in the root directory of your microSD card. If you have copied the default AUTOEXEC.TXT file when setting up your device, then it will include the commands above and therefore your Agon Light will appear to boot directly to BASIC without you needed to type anything.</p>
+</li>
+<li>
+<p><a href="bbckey1.html#chain">CHAIN</a></p>
+</li>
+<li>
+<p><a href="bbckey1.html#chr">CHR$</a></p>
+</li>
+<li>
+<p><a href="bbckey1.html#clear">CLEAR</a></p>
+</li>
+<li>
+<p><a href="bbckey1.html#close">CLOSE#</a></p>
+</li>
+<li>
+<p><a href="bbckey1.html#clg">CLG</a></p>
+</li>
+<li>
+<p><a href="bbckey1.html#cls">CLS</a></p>
+</li>
+<li>
+<p><a href="bbckey1.html#colour">COLOUR</a></p>
+</li>
+<li>
+<p><a href="bbckey1.html#cos">COS</a></p>
+</li>
+<li>
+<p><a href="bbckey1.html#count">COUNT</a></p>
+</li>
+<li>
+<p><a href="bbckey1.html#data">DATA</a></p>
+</li>
+<li>
+<p><a href="bbckey1.html#def">DEF</a></p>
+</li>
+<li>
+<p><a href="bbckey1.html#deg">DEG</a></p>
+</li>
+<li>
+<p><a href="bbckey1.html#delete">DELETE</a></p>
+</li>
+<li>
+<p><a href="bbckey1.html#dim">DIM</a></p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p><a href="bbckey1.html#dimarrays">Dimensioning Arrays</a></p>
+</li>
+<li>
+<p><a href="bbckey1.html#dimreserving">Reserving an Area of Memory</a></p>
+</li>
+</ol>
 </div>
-<div class="paragraph">
-<p>To exit BBC BASIC (Z80) and return to MOS type</p>
+</li>
+<li>
+<p><a href="bbckey1.html#div">DIV</a></p>
+</li>
+<li>
+<p><a href="bbckey1.html#draw">DRAW</a></p>
+</li>
+<li>
+<p><a href="bbckey1.html#edit">EDIT</a></p>
+</li>
+<li>
+<p><a href="bbckey1.html#else">ELSE</a></p>
+</li>
+<li>
+<p><a href="bbckey1.html#end">END</a></p>
+</li>
+<li>
+<p><a href="bbckey1.html#endproc">ENDPROC</a></p>
+</li>
+<li>
+<p><a href="bbckey1.html#envelope">ENVELOPE</a></p>
+</li>
+<li>
+<p><a href="bbckey2.html#eof">EOF#</a></p>
+</li>
+<li>
+<p><a href="bbckey2.html#eor">EOR</a></p>
+</li>
+<li>
+<p><a href="bbckey2.html#erl">ERL</a></p>
+</li>
+<li>
+<p><a href="bbckey2.html#err">ERR</a></p>
+</li>
+<li>
+<p><a href="bbckey2.html#eval">EVAL</a></p>
+</li>
+<li>
+<p><a href="bbckey2.html#exp">EXP</a></p>
+</li>
+<li>
+<p><a href="bbckey2.html#ext">EXT#</a></p>
+</li>
+<li>
+<p><a href="bbckey2.html#false">FALSE</a></p>
+</li>
+<li>
+<p><a href="bbckey2.html#fn">FN</a></p>
+</li>
+<li>
+<p><a href="bbckey2.html#for">FOR</a></p>
+</li>
+<li>
+<p><a href="bbckey2.html#gcol">GCOL</a></p>
+</li>
+<li>
+<p><a href="bbckey2.html#get">GET/GET$</a></p>
+</li>
+<li>
+<p><a href="bbckey2.html#gosub">GOSUB</a></p>
+</li>
+<li>
+<p><a href="bbckey2.html#goto">GOTO</a></p>
+</li>
+<li>
+<p><a href="bbckey2.html#himem">HIMEM</a></p>
+</li>
+<li>
+<p><a href="bbckey2.html#if">IF</a></p>
+</li>
+<li>
+<p><a href="bbckey2.html#inkey">INKEY/INKEY$</a></p>
+</li>
+<li>
+<p><a href="bbckey2.html#input">INPUT</a></p>
+</li>
+<li>
+<p><a href="bbckey2.html#inputline">INPUT LINE</a></p>
+</li>
+<li>
+<p><a href="bbckey2.html#inputhash">INPUT#</a></p>
+</li>
+<li>
+<p><a href="bbckey2.html#instr">INSTR</a></p>
+</li>
+<li>
+<p><a href="bbckey2.html#int">INT</a></p>
+</li>
+<li>
+<p><a href="bbckey2.html#left">LEFT$</a></p>
+</li>
+<li>
+<p><a href="bbckey2.html#len">LEN</a></p>
+</li>
+<li>
+<p><a href="bbckey2.html#let">LET</a></p>
+</li>
+<li>
+<p><a href="bbckey2.html#list">LIST</a></p>
+</li>
+<li>
+<p><a href="bbckey2.html#listif">LIST IF</a></p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p><a href="bbckey2.html#limitations">Limitations</a></p>
+</li>
+</ol>
 </div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-console" data-lang="console">&gt;*BYE</code></pre>
+</li>
+<li>
+<p><a href="bbckey2.html#listo">LISTO</a></p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p><a href="bbckey2.html#settings">Bit Settings</a></p>
+</li>
+</ol>
 </div>
+</li>
+<li>
+<p><a href="bbckey2.html#ln">LN</a></p>
+</li>
+<li>
+<p><a href="bbckey2.html#load">LOAD</a></p>
+</li>
+<li>
+<p><a href="bbckey2.html#local">LOCAL</a></p>
+</li>
+<li>
+<p><a href="bbckey2.html#log">LOG</a></p>
+</li>
+<li>
+<p><a href="bbckey2.html#lomem">LOMEM</a></p>
+</li>
+<li>
+<p><a href="bbckey3.html#mid">MID$</a></p>
+</li>
+<li>
+<p><a href="bbckey3.html#mod">MOD</a></p>
+</li>
+<li>
+<p><a href="bbckey3.html#mode">MODE</a></p>
+</li>
+<li>
+<p><a href="bbckey3.html#move">MOVE</a></p>
+</li>
+<li>
+<p><a href="bbckey3.html#new">NEW</a></p>
+</li>
+<li>
+<p><a href="bbckey3.html#next">NEXT</a></p>
+</li>
+<li>
+<p><a href="bbckey3.html#not">NOT</a></p>
+</li>
+<li>
+<p><a href="bbckey3.html#old">OLD</a></p>
+</li>
+<li>
+<p><a href="bbckey3.html#on">ON</a></p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p><a href="bbckey3.html#limitations">Limitations</a></p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p><a href="bbckey3.html#onerror">ON ERROR</a></p>
+</li>
+<li>
+<p><a href="bbckey3.html#openin">OPENIN</a></p>
+</li>
+<li>
+<p><a href="bbckey3.html#openout">OPENOUT</a></p>
+</li>
+<li>
+<p><a href="bbckey3.html#openup">OPENUP</a></p>
+</li>
+<li>
+<p><a href="bbckey3.html#opt">OPT</a></p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p><a href="bbckey3.html#codeatp">Code Assembled Starting at P%</a></p>
+</li>
+<li>
+<p><a href="bbckey3.html#codeato">Code Assembled Starting at O%</a></p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p><a href="bbckey3.html#or">OR</a></p>
+</li>
+<li>
+<p><a href="bbckey3.html#oscli">OSCLI</a></p>
+</li>
+<li>
+<p><a href="bbckey3.html#page">PAGE</a></p>
+</li>
+<li>
+<p><a href="bbckey3.html#pi">PI</a></p>
+</li>
+<li>
+<p><a href="bbckey3.html#plot">PLOT</a></p>
+</li>
+<li>
+<p><a href="bbckey3.html#point">POINT</a></p>
+</li>
+<li>
+<p><a href="bbckey3.html#pos">POS</a></p>
+</li>
+<li>
+<p><a href="bbckey3.html#print">PRINT</a></p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p><a href="bbckey3.html#printinfo">General Information</a></p>
+</li>
+<li>
+<p><a href="bbckey3.html#printformat">Print Format Control</a></p>
+<div class="olist upperalpha">
+<ol class="upperalpha" type="A">
+<li>
+<p><a href="bbckey3.html#strformat">STR$ Format Control - SS</a></p>
+</li>
+<li>
+<p><a href="bbckey3.html#formatsel">Format Selection - NN</a></p>
+</li>
+<li>
+<p><a href="bbckey3.html#numdig">Number of Digits - PP</a></p>
+</li>
+<li>
+<p><a href="bbckey3.html#zonewidth">Zone Width - WW</a></p>
+</li>
+<li>
+<p><a href="bbckey3.html#changingat">Changing the Print Control Variable</a></p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p><a href="bbckey3.html#printeg">Examples</a></p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p><a href="bbckey4.html#print">PRINT#</a></p>
+</li>
+<li>
+<p><a href="bbckey4.html#proc">PROC</a></p>
+</li>
+<li>
+<p><a href="bbckey4.html#ptr">PTR#</a></p>
+</li>
+<li>
+<p><a href="bbckey4.html#put">PUT</a></p>
+</li>
+<li>
+<p><a href="bbckey4.html#rad">RAD</a></p>
+</li>
+<li>
+<p><a href="bbckey4.html#read">READ</a></p>
+</li>
+<li>
+<p><a href="bbckey4.html#rem">REM</a></p>
+</li>
+<li>
+<p><a href="bbckey4.html#renumber">RENUMBER</a></p>
+</li>
+<li>
+<p><a href="bbckey4.html#repeat">REPEAT</a></p>
+</li>
+<li>
+<p><a href="bbckey4.html#report">REPORT</a></p>
+</li>
+<li>
+<p><a href="bbckey4.html#restore">RESTORE</a></p>
+</li>
+<li>
+<p><a href="bbckey4.html#return">RETURN</a></p>
+</li>
+<li>
+<p><a href="bbckey4.html#right">RIGHT$</a></p>
+</li>
+<li>
+<p><a href="bbckey4.html#rnd">RND</a></p>
+</li>
+<li>
+<p><a href="bbckey4.html#run">RUN</a></p>
+</li>
+<li>
+<p><a href="bbckey4.html#save">SAVE</a></p>
+</li>
+<li>
+<p><a href="bbckey4.html#sgn">SGN</a></p>
+</li>
+<li>
+<p><a href="bbckey4.html#sin">SIN</a></p>
+</li>
+<li>
+<p><a href="bbckey4.html#sound">SOUND</a></p>
+</li>
+<li>
+<p><a href="bbckey4.html#spc">SPC</a></p>
+</li>
+<li>
+<p><a href="bbckey4.html#sqr">SQR</a></p>
+</li>
+<li>
+<p><a href="bbckey4.html#step">STEP</a></p>
+</li>
+<li>
+<p><a href="bbckey4.html#stop">STOP</a></p>
+</li>
+<li>
+<p><a href="bbckey4.html#str">STR$</a></p>
+</li>
+<li>
+<p><a href="bbckey4.html#string">STRING$</a></p>
+</li>
+<li>
+<p><a href="bbckey4.html#tab">TAB</a></p>
+</li>
+<li>
+<p><a href="bbckey4.html#tan">TAN</a></p>
+</li>
+<li>
+<p><a href="bbckey4.html#then">THEN</a></p>
+</li>
+<li>
+<p><a href="bbckey4.html#time">TIME</a></p>
+</li>
+<li>
+<p><a href="bbckey4.html#to">TO</a></p>
+</li>
+<li>
+<p><a href="bbckey4.html#top">TOP</a></p>
+</li>
+<li>
+<p><a href="bbckey4.html#trace">TRACE</a></p>
+</li>
+<li>
+<p><a href="bbckey4.html#true">TRUE</a></p>
+</li>
+<li>
+<p><a href="bbckey4.html#until">UNTIL</a></p>
+</li>
+<li>
+<p><a href="bbckey4.html#usr">USR</a></p>
+</li>
+<li>
+<p><a href="bbckey4.html#val">VAL</a></p>
+</li>
+<li>
+<p><a href="bbckey4.html#vdu">VDU</a></p>
+</li>
+<li>
+<p><a href="bbckey4.html#vpos">VPOS</a></p>
+</li>
+<li>
+<p><a href="bbckey4.html#width">WIDTH</a></p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p><strong><a href="opsys0.html">Operating System Interface</a></strong></p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p><a href="opsys0.html#introduction">Introduction</a></p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p><a href="opsys0.html#specifiers">File Specifiers</a></p>
+</li>
+<li>
+<p><a href="opsys0.html#symbols">Symbols</a></p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p><a href="opsys0.html#accessing">Accessing Star Commands</a></p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p><a href="opsys0.html#syntax">Syntax</a></p>
+</li>
+<li>
+<p><a href="opsys0.html#case">Case Conversion</a></p>
+</li>
+<li>
+<p><a href="opsys0.html#special">Special Characters</a></p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p><a href="opsys1.html#resident">Resident Star Commands</a></p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p><a href="opsys1.html#bye">*BYE</a></p>
+</li>
+<li>
+<p><a href="opsys1.html#cpm">*CPM</a></p>
+</li>
+<li>
+<p><a href="opsys1.html#dir">*DIR</a></p>
+</li>
+<li>
+<p><a href="opsys1.html#drive">*DRIVE</a></p>
+</li>
+<li>
+<p><a href="opsys1.html#erase">*ERA</a></p>
+</li>
+<li>
+<p><a href="opsys1.html#load">*LOAD</a></p>
+</li>
+<li>
+<p><a href="opsys1.html#opt">*OPT</a></p>
+</li>
+<li>
+<p><a href="opsys1.html#rename">*REN</a></p>
+</li>
+<li>
+<p><a href="opsys1.html#reset">*RESET</a></p>
+</li>
+<li>
+<p><a href="opsys1.html#save">*SAVE</a></p>
+</li>
+<li>
+<p><a href="opsys1.html#type">*TYPE</a></p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p><strong><a href="bbcfile1.html">BBC BASIC (Z80) Disk Files</a></strong></p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p><a href="bbcfile1.html#introduction">Introduction</a></p>
+</li>
+<li>
+<p><a href="bbcfile1.html#structure">The Structure of Files</a></p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p><a href="bbcfile1.html#basics">Basics</a></p>
+</li>
+<li>
+<p><a href="bbcfile1.html#serial">Serial (Sequential) Files</a></p>
+</li>
+<li>
+<p><a href="bbcfile1.html#random">Random Access Files</a></p>
+</li>
+<li>
+<p><a href="bbcfile1.html#indexed">Indexed Files</a></p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p><a href="bbcfile1.html#bbcfiles">Files in BBC BASIC (Z80)</a></p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p><a href="bbcfile1.html#bbcintro">Introduction</a></p>
+</li>
+<li>
+<p><a href="bbcfile1.html#howdata">How Data is Read/Written</a></p>
+</li>
+<li>
+<p><a href="bbcfile1.html#howstored">How Data is Stored</a></p>
+<div class="olist upperalpha">
+<ol class="upperalpha" type="A">
+<li>
+<p><a href="bbcfile1.html#numeric">Numeric Data</a></p>
+</li>
+<li>
+<p><a href="bbcfile1.html#strings">How Strings are Stored</a></p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p><a href="bbcfile1.html#referred">How Files are Referred To</a></p>
+</li>
+<li>
+<p><a href="bbcfile1.html#buffering">File Buffering</a></p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p><a href="bbcfile1.html#commands">Disk File Commands</a></p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p><a href="bbcfile1.html#commandintro">Introduction</a></p>
+</li>
+<li>
+<p><a href="bbcfile1.html#filenames">Filenames</a></p>
+</li>
+<li>
+<p><a href="bbcfile1.html#organisation">Organisation of Examples</a></p>
+</li>
+<li>
+<p><a href="bbcfile1.html#manipulation">Program File Manipulation</a></p>
+<div class="olist upperalpha">
+<ol class="upperalpha" type="A">
+<li>
+<p><a href="bbcfile1.html#save">SAVE</a></p>
+</li>
+<li>
+<p><a href="bbcfile1.html#load">LOAD</a></p>
+</li>
+<li>
+<p><a href="bbcfile1.html#chain">CHAIN</a></p>
+</li>
+<li>
+<p><a href="bbcfile1.html#merge">MERGE</a></p>
+</li>
+<li>
+<p><a href="bbcfile1.html#delete">*ERA</a></p>
+</li>
+<li>
+<p><a href="bbcfile1.html#rename">*REN</a></p>
+</li>
+<li>
+<p><a href="bbcfile1.html#dir">*DIR</a></p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p><a href="bbcfile1.html#datafiles">Disk Data Files</a></p>
+<div class="olist upperalpha">
+<ol class="upperalpha" type="A">
+<li>
+<p><a href="bbcfile1.html#dataintro">Introduction</a></p>
+</li>
+<li>
+<p><a href="bbcfile1.html#opening">Opening Files</a></p>
+</li>
+<li>
+<p><a href="bbcfile1.html#functions">File Opening Functions</a></p>
+</li>
+<li>
+<p><a href="bbcfile1.html#openout">OPENOUT</a></p>
+</li>
+<li>
+<p><a href="bbcfile1.html#openin">OPENIN</a></p>
+</li>
+<li>
+<p><a href="bbcfile1.html#openup">OPENUP</a></p>
+</li>
+<li>
+<p><a href="bbcfile1.html#close">CLOSE#</a></p>
+</li>
+<li>
+<p><a href="bbcfile1.html#input">INPUT#</a></p>
+</li>
+<li>
+<p><a href="bbcfile1.html#print">PRINT#</a></p>
+</li>
+<li>
+<p><a href="bbcfile1.html#ext">EXT#</a></p>
+</li>
+<li>
+<p><a href="bbcfile1.html#ptr">PTR#</a></p>
+</li>
+<li>
+<p><a href="bbcfile1.html#eof">EOF#</a></p>
+</li>
+<li>
+<p><a href="bbcfile1.html#bget">BGET#</a></p>
+</li>
+<li>
+<p><a href="bbcfile1.html#bput">BPUT#</a></p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p><a href="bbcfile2.html#serialfiles">Serial Files</a></p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p><a href="bbcfile2.html#introduction">Introduction</a></p>
+</li>
+<li>
+<p><a href="bbcfile2.html#characterfiles">Character Data Files</a></p>
+<div class="olist upperalpha">
+<ol class="upperalpha" type="A">
+<li>
+<p><a href="bbcfile2.html#example1">Ex 1 - Writing Serial Character Data</a></p>
+</li>
+<li>
+<p><a href="bbcfile2.html#example2">Ex 2 - Reading Serial Character Data</a></p>
+</li>
+<li>
+<p><a href="bbcfile2.html#example3">Ex 3 - Writing 'AT END' of Character Files</a></p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p><a href="bbcfile2.html#mixedfiles">Mixed Numeric/Character Data Files</a></p>
+<div class="olist upperalpha">
+<ol class="upperalpha" type="A">
+<li>
+<p><a href="bbcfile2.html#example4">Ex 4 - Writing a Mixed Data File</a></p>
+</li>
+<li>
+<p><a href="bbcfile2.html#example5">Ex 5 - Reading a Mixed Data File</a></p>
+</li>
+<li>
+<p><a href="bbcfile2.html#example6">Ex 6 - Writing 'AT END' of Mixed Files</a></p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p><a href="bbcfile2.html#compatible">Compatible Data Files</a></p>
+<div class="olist upperalpha">
+<ol class="upperalpha" type="A">
+<li>
+<p><a href="bbcfile2.html#example7">Ex 7 - Writing a Compatible Data File</a></p>
+</li>
+<li>
+<p><a href="bbcfile2.html#example8">Ex 8 - Reading a Compatible Data File</a></p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p><a href="bbcfile3.html#randomfiles">Random (Relative) FIles</a></p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p><a href="bbcfile3.html#introduction">Introduction</a></p>
+</li>
+<li>
+<p><a href="bbcfile3.html#designing">Designing the File</a></p>
+<div class="olist upperalpha">
+<ol class="upperalpha" type="A">
+<li>
+<p><a href="bbcfile3.html#structure">Record Structure</a></p>
+</li>
+<li>
+<p><a href="bbcfile3.html#accessing">Accessing The Records</a></p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p><a href="bbcfile3.html#example9">Ex 9 - Simple Random Access File</a></p>
+</li>
+<li>
+<p><a href="bbcfile3.html#example10">Ex 10 - Simple Random Access Database</a></p>
+</li>
+<li>
+<p><a href="bbcfile3.html#example11">Ex 11 - Random Access Inventory Program</a></p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p><a href="bbcfile4.html#indexed">Indexed Data Files</a></p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p><a href="bbcfile4.html#deficiencies">Deficiencies of Random Access Files</a></p>
+</li>
+<li>
+<p><a href="bbcfile4.html#addressbook">The Address Book Program</a></p>
+<div class="olist upperalpha">
+<ol class="upperalpha" type="A">
+<li>
+<p><a href="bbcfile4.html#fileorg">File Organisation</a></p>
+</li>
+<li>
+<p><a href="bbcfile4.html#progorg">Program Organisation</a></p>
+</li>
+<li>
+<p><a href="bbcfile4.html#index">The Index</a></p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p><a href="bbcfile4.html#example12">Ex 12 (the LAST)</a></p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p><a href="bbcfile4.html#binarychop">The Binary Chop</a></p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p><a href="bbcfile4.html#explanation">Explanation</a></p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="olist upperalpha">
+<ol class="upperalpha" type="A">
+<li>
+<p><strong><a href="annexa.html">Table of ASCII Codes</a></strong></p>
+</li>
+<li>
+<p><strong><a href="annexb.html">Mathematical Functions</a></strong></p>
+</li>
+<li>
+<p><strong><a href="annexc.html">Error Messages and Codes</a></strong></p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p><a href="annexc.html#summary">Summary</a></p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p><a href="annexc.html#trapprog">Trappable - Program</a></p>
+</li>
+<li>
+<p><a href="annexc.html#trapos">Trappable - Operating System</a></p>
+</li>
+<li>
+<p><a href="annexc.html#untrap">Untrappable - Error Code 0</a></p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p><a href="annexc.html#details">Details</a></p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p><a href="annexc.html#accuracylost">Accuracy lost</a></p>
+</li>
+<li>
+<p><a href="annexc.html#arguments">Arguments</a></p>
+</li>
+<li>
+<p><a href="annexc.html#array">Array</a></p>
+</li>
+<li>
+<p><a href="annexc.html#badcall">Bad call</a></p>
+</li>
+<li>
+<p><a href="annexc.html#badcommand">Bad command</a></p>
+</li>
+<li>
+<p><a href="annexc.html#baddim">Bad DIM</a></p>
+</li>
+<li>
+<p><a href="annexc.html#badhex">Bad HEX</a></p>
+</li>
+<li>
+<p><a href="annexc.html#badname">Bad name</a></p>
+</li>
+<li>
+<p><a href="annexc.html#badprogram">Bad program</a></p>
+</li>
+<li>
+<p><a href="annexc.html#badstring">Bad string</a></p>
+</li>
+<li>
+<p><a href="annexc.html#cantmatchfor">Can&#8217;t match FOR</a></p>
+</li>
+<li>
+<p><a href="annexc.html#channel">Channel</a></p>
+</li>
+<li>
+<p><a href="annexc.html#closeerror">Close error</a></p>
+</li>
+<li>
+<p><a href="annexc.html#dimspace">DIM space</a></p>
+</li>
+<li>
+<p><a href="annexc.html#directoryfull">Directory full</a></p>
+</li>
+<li>
+<p><a href="annexc.html#diskfull">Disk full</a></p>
+</li>
+<li>
+<p><a href="annexc.html#divisionbyzero">Division by zero</a></p>
+</li>
+<li>
+<p><a href="annexc.html#escape">Escape</a></p>
+</li>
+<li>
+<p><a href="annexc.html#exprange">Exp range</a></p>
+</li>
+<li>
+<p><a href="annexc.html#failedatnnn">Failed at nnn</a></p>
+</li>
+<li>
+<p><a href="annexc.html#fileexists">File exists</a></p>
+</li>
+<li>
+<p><a href="annexc.html#filenotfound">File not found</a></p>
+</li>
+<li>
+<p><a href="annexc.html#forvariable">FOR variable</a></p>
+</li>
+<li>
+<p><a href="annexc.html#linespace">LINE space</a></p>
+</li>
+<li>
+<p><a href="annexc.html#logrange">Log range</a></p>
+</li>
+<li>
+<p><a href="annexc.html#missingcomma">Missing ,</a></p>
+</li>
+<li>
+<p><a href="annexc.html#missingquote">Missing "</a></p>
+</li>
+<li>
+<p><a href="annexc.html#missingbracket">Missing )</a></p>
+</li>
+<li>
+<p><a href="annexc.html#missinghash">Missing #</a></p>
+</li>
+<li>
+<p><a href="annexc.html#mistake">Mistake</a></p>
+</li>
+<li>
+<p><a href="annexc.html#negativeroot">-ve root</a></p>
+</li>
+<li>
+<p><a href="annexc.html#nogosub">No GOSUB</a></p>
+</li>
+<li>
+<p><a href="annexc.html#nofn">No FN</a></p>
+</li>
+<li>
+<p><a href="annexc.html#nofor">No FOR</a></p>
+</li>
+<li>
+<p><a href="annexc.html#noproc">No PROC</a></p>
+</li>
+<li>
+<p><a href="annexc.html#norepeat">No REPEAT</a></p>
+</li>
+<li>
+<p><a href="annexc.html#noroom">No room</a></p>
+</li>
+<li>
+<p><a href="annexc.html#nosuchfnproc">No such FN/PROC</a></p>
+</li>
+<li>
+<p><a href="annexc.html#nosuchline">No such line</a></p>
+</li>
+<li>
+<p><a href="annexc.html#nosuchvariable">No such variable</a></p>
+</li>
+<li>
+<p><a href="annexc.html#noto">No TO</a></p>
+</li>
+<li>
+<p><a href="annexc.html#notlocal">Not LOCAL</a></p>
+</li>
+<li>
+<p><a href="annexc.html#onrange">ON range</a></p>
+</li>
+<li>
+<p><a href="annexc.html#onsyntax">ON syntax</a></p>
+</li>
+<li>
+<p><a href="annexc.html#outofdata">Out of DATA</a></p>
+</li>
+<li>
+<p><a href="annexc.html#outofrange">Out of range</a></p>
+</li>
+<li>
+<p><a href="annexc.html#renumberspace">RENUMBER space</a></p>
+</li>
+<li>
+<p><a href="annexc.html#silly">Silly</a></p>
+</li>
+<li>
+<p><a href="annexc.html#stringtoolong">String too long</a></p>
+</li>
+<li>
+<p><a href="annexc.html#subscript">Subscript</a></p>
+</li>
+<li>
+<p><a href="annexc.html#syntaxerror">Syntax error</a></p>
+</li>
+<li>
+<p><a href="annexc.html#toobig">Too big</a></p>
+</li>
+<li>
+<p><a href="annexc.html#toomanyopenfiles">Too many open files</a></p>
+</li>
+<li>
+<p><a href="annexc.html#typemismatch">Type mismatch</a></p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p><strong><a href="annexd.html">Format of Program and Variables in Memory</a></strong></p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p><a href="annexd.html#memorymap">Memory Map</a></p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p><a href="annexd.html#memorymap">The Memory Map</a></p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p><a href="annexd.html#management">Memory Management</a></p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p><a href="annexd.html#limiting">Limiting the Number of Variables</a></p>
+</li>
+<li>
+<p><a href="annexd.html#stringmanage">String Management</a></p>
+<div class="olist upperalpha">
+<ol class="upperalpha" type="A">
+<li>
+<p><a href="annexd.html#garbage">Garbage Generation</a></p>
+</li>
+<li>
+<p><a href="annexd.html#stringallocation">Memory Allocation for String Variables</a></p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p><a href="annexd.html#programstorage">Program Storage in Memory</a></p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p><a href="annexd.html#linelength">Line Length</a></p>
+</li>
+<li>
+<p><a href="annexd.html#linenumber">Line Number</a></p>
+</li>
+<li>
+<p><a href="annexd.html#statements">Statements</a></p>
+</li>
+<li>
+<p><a href="annexd.html#terminator">Line Terminator</a></p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p><a href="annexd.html#variablestorage">Variable Storage in Memory</a></p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p><a href="annexd.html#integer">Integer Variables</a></p>
+</li>
+<li>
+<p><a href="annexd.html#real">Real Variables</a></p>
+</li>
+<li>
+<p><a href="annexd.html#string">String Variables</a></p>
+</li>
+<li>
+<p><a href="annexd.html#fixedstrings">Fixed Strings</a></p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</li>
+</ol>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-04-28 18:44:04 +0100
+Last updated 2023-04-29 23:57:01 +0100
 </div>
 </div>
 </body>
