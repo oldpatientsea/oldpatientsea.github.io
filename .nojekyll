@@ -1,0 +1,15 @@
+Publish to GitHub Pages
+
+Antora is designed to create sites that run anywhere, whether it be on a static web host or the local filesystem. However, some hosts offer “features” that mess with Antora’s output. GitHub Pages is one of those hosts.
+Jekyll and underscore files
+
+By default, GitHub Pages runs all files through another static site generator named Jekyll (even if your repository is not set up to use Jekyll). Since Antora already produces a ready-made site, there’s absolutely no need for this step. But it’s more than just the wasted effort.
+
+Jekyll has the nasty side effect of removing all files that begin with an underscore (_). Why is this a problem? By default, Antora puts UI files in a folder named _. It also places images inside the folder named _images. When Jekyll comes through, it wipes out these folders. As a result, you get no UI and no images.
+.nojekyll
+
+Fortunately, there’s a way to disable this “feature” of GitHub Pages. The solution is to add a .nojekyll file to the root of the published site (i.e., the output directory configured in your playbook).
+
+The presence of the .nojekyll file at the root of the gh-pages branch tells GitHub Pages not to run the published files through Jekyll. The result is that your Antora-made site will work as expected.
+
+https://docs.antora.org/antora/latest/publish-to-github-pages/
