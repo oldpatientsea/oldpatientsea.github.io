@@ -169,6 +169,17 @@
 <div class="paragraph">
 <p>All standard Zilog mnemonics are accepted: 'ADD', 'ADC' and 'SBC', must be followed by 'A' or 'HL'. For example <strong>ADD A,C</strong> is accepted but <strong>ADD C</strong> is not. However, the brackets around the port address in 'IN' and 'OUT' are optional; thus both <strong>OUT (5),A</strong> and <strong>OUT 5,A</strong> are accepted. The instruction 'IN F,&#169;' is <strong>not</strong> accepted but the equivalent object code is produced from 'IN (HL),&#169;'.</p>
 </div>
+<div class="paragraph">
+<p>In addition to the standard set of Z80 instructions, the following eZ80 instructions have been added</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">MLT</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The assembler will only compile 8-bit Z80 code and there are currently no plans for extending the instruction set much further in this version.</p>
+</div>
 </div>
 <div class="sect3">
 <h4 id="_statements"><a class="anchor" href="#_statements"></a><span id="statements">Statements</span></h4>

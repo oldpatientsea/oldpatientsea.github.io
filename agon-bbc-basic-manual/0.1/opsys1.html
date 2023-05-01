@@ -156,212 +156,101 @@
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
+<div class="sect1">
+<h2 id="_resident_star_commands"><a class="anchor" href="#_resident_star_commands"></a><span id="resident">Resident Star Commands</span></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The following * commands are supported</p>
+</div>
 <div class="sect2">
-<h3 id="_resident_star_commands"><a class="anchor" href="#_resident_star_commands"></a><span id="resident">Resident Star Commands</span></h3>
-<div class="sect3">
-<h4 id="_bye"><a class="anchor" href="#_bye"></a><span id="bye">*BYE</span></h4>
+<h3 id="_bye"><a class="anchor" href="#_bye"></a><span id="bye">*BYE</span></h3>
 <div class="paragraph">
-<p>Return to CP/M.</p>
-</div>
+<p>Exit BASIC and return to MOS.</p>
 </div>
 <div class="sect3">
-<h4 id="_cpm"><a class="anchor" href="#_cpm"></a><span id="cpm">*CPM</span></h4>
-<div class="paragraph">
-<p>Return to CP/M (same as *BYE).</p>
+<h4 id="_syntax"><a class="anchor" href="#_syntax"></a>Syntax</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">*BYE</code></pre>
 </div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_edit"><a class="anchor" href="#_edit"></a><span id="edit">*EDIT</span></h3>
+<div class="paragraph">
+<p>Pull a line into the editor for editing.</p>
 </div>
 <div class="sect3">
-<h4 id="_dir"><a class="anchor" href="#_dir"></a><span id="dir">*DIR</span></h4>
-<div class="paragraph">
-<p>List the disk directory. The syntax is similar to the CP/M DIR command except that the extension defaults to .BBC if it is omitted.</p>
-</div>
+<h4 id="_syntax_2"><a class="anchor" href="#_syntax_2"></a>Syntax</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">*DIR [afsp]</code></pre>
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">*EDIT linenum</code></pre>
 </div>
 </div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>*DIR</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>List all .BBC files on the disk.</code></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">`<strong>DIR B:</strong>.* `</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>List all files on disk B.</code></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code><strong>.</strong>.*</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>List all the files on the current disk.</code></p></td>
-</tr>
-</tbody>
-</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_fx"><a class="anchor" href="#_fx"></a><span id="fx">*FX</span></h3>
+<div class="paragraph">
+<p>Execute an OSBYTE command.</p>
+</div>
+<div class="paragraph">
+<p>The only OSBYTE commands supported at the moment are:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>19: Wait for vertical blank retrace</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>And from MOS 1.03 or above</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>11: Set keyboard repeat delay in ms (250, 500, 750 or 1000)</p>
+</li>
+<li>
+<p>12: Set keyboard repeat rate ins ms (between 33 and 500ms)</p>
+</li>
+<li>
+<p>118: Set keyboard LED (Bit 0: Scroll Lock, Bit 1: Caps Lock, Bit 2: Num Lock) - does not currently change status, just the LED</p>
+</li>
+</ul>
 </div>
 <div class="sect3">
-<h4 id="_drive"><a class="anchor" href="#_drive"></a><span id="drive">*DRIVE</span></h4>
-<div class="paragraph">
-<p>Select the drive to be used as the default drive for subsequent disk operations. The colon is a mandatory part of the drive name.</p>
-</div>
+<h4 id="_syntax_3"><a class="anchor" href="#_syntax_3"></a>Syntax</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">*DRIVE d:
-
-*DRIVE A:</code></pre>
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">*FX osbyte, params</code></pre>
 </div>
 </div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_version"><a class="anchor" href="#_version"></a><span id="version">*VERSION</span></h3>
+<div class="paragraph">
+<p>Display the current version of BBC BASIC</p>
 </div>
 <div class="sect3">
-<h4 id="_era"><a class="anchor" href="#_era"></a><span id="erase">*ERA</span></h4>
-<div class="paragraph">
-<p>Delete the specified disk file. The syntax is similar to the CP/M-80 ERA command except that the extension defaults to .BBC if it is omitted.</p>
-</div>
+<h4 id="_syntax_4"><a class="anchor" href="#_syntax_4"></a>Syntax</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">*ERA ufsp
-
-*ERA GAME1.DTA</code></pre>
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">*VERSION</code></pre>
 </div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_mos_commands"><a class="anchor" href="#_mos_commands"></a><span id="version">MOS Commands</span></h3>
+<div class="paragraph">
+<p>In addition, any of the MOS commands can be called by prefixing them with a *</p>
 </div>
 <div class="paragraph">
-<p>This command will delete only one file at a time; wild cards are not permitted in the file specifier.</p>
-</div>
-<div class="paragraph">
-<p><a href="bbckey3.html#oscli">OSCLI</a> may also be used to delete files.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">OSCLI "ERA "+&lt;str&gt;
-
-OSCLI "ERA "+name$
-OSCLI "ERA GAME1.DTA"</code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_load"><a class="anchor" href="#_load"></a><span id="load">*LOAD</span></h4>
-<div class="paragraph">
-<p>Load the specified file into memory at hexadecimal address 'aaaa'. The load address MUST always be specified.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">*LOAD ufsp aaaa
-
-*LOAD A:WOMBAT 8F00</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p><a href="bbckey3.html#oscli">OSCLI</a> may also be used to load a file. However, you must take care to provide the load address as a hexadecimal number in string format.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">OSCLI "LOAD "+&lt;str&gt;+" "+STR$~&lt;num&gt;
-
-OSCLI "LOAD "+file_name$+" "+STR$~(start_address)</code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_opt"><a class="anchor" href="#_opt"></a><span id="opt">*OPT</span></h4>
-<div class="paragraph">
-<p>Select the destination 'output stream' for console output. The default is OPT 0.</p>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>*OPT 0</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Console output.</strong> The output is sent to the screen.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>*OPT 1</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Auxiliary Output.</strong> The output is sent to the auxiliary output.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>*OPT 2</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Printer Output.</strong> The output is sent to the list device.</p></td>
-</tr>
-</tbody>
-</table>
-<div class="paragraph">
-<p>All characters sent to the console are vectored with *OPT.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">10 *OPT 2
-20 PRINT "THIS WILL APPEAR ON THE PRINTER"
-30 *OPT 0
-40 PRINT "THIS WILL APPEAR ON THE SCREEN"</code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_ren"><a class="anchor" href="#_ren"></a><span id="rename">*REN</span></h4>
-<div class="paragraph">
-<p>Rename a disk file. The syntax is similar to the CP/M REN command except that the extension defaults to .BBC if it is omitted. <a href="bbckey3.html#oscli">OSCLI</a> can also be used to rename a file.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">*RENAME ufspnew=ufspold
-*REN ufspnew=ufspold
-OSCLI "REN "+&lt;str&gt;+"="+&lt;str&gt;
-
-*REN NEWFILE=OLDFILE
-
-OSCLI "REN "file_name$+".BAK="+filename$+".BBC"</code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_reset"><a class="anchor" href="#_reset"></a><span id="reset">*RESET</span></h4>
-<div class="paragraph">
-<p>Reset the disk system.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_save"><a class="anchor" href="#_save"></a><span id="save">*SAVE</span></h4>
-<div class="paragraph">
-<p>Save an area of memory to a disk file. If the extension is omitted, .BBC is assumed.</p>
-</div>
-<div class="paragraph">
-<p>You MUST specify the start address (aaaa) and either the length of the area of memory (llll) or its end address+1 (bbbb). There is no 'load address' or 'execute address'.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">*SAVE ufsp aaaa +llll
-*SAVE ufsp aaaa bbbb
-
-*SAVE "WOMBAT" 8F00 +80
-*SAVE "WOMBAT" 8F00 8F80</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p><a href="bbckey3.html#oscli">OSCLI</a> can also be used to save a file.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">OSCLI "SAVE "+&lt;str&gt;+" "+STR$~(&lt;num&gt;)+" "+STR$(&lt;num&gt;)
-
-OSCLI "SAVE "+ufn$+" "+STR$~(add)+"+"+STR$~(len)</code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_type"><a class="anchor" href="#_type"></a><span id="type">*TYPE</span></h4>
-<div class="paragraph">
-<p>Type the specified file on the screen. This command is similar in action to the CP/M-80 TYPE command except that the extension .BBC is assumed if it is omitted.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">*TYPE ufsp
-
-*TYPE ADDRESS.LST</code></pre>
+<p>See the MOS documentation for more details</p>
 </div>
 </div>
 </div>

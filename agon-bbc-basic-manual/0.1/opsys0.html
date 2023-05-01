@@ -162,111 +162,29 @@
 <div class="sect2">
 <h3 id="_introduction"><a class="anchor" href="#_introduction"></a><span id="introduction">Introduction</span></h3>
 <div class="paragraph">
-<p>As with the BBC micro computer, the star (*) commands provide access to the operating system. Since the BBC operating system is completely different to CP/M-80 there are a number of differences in the star commands.</p>
+<p>As with the BBC micro computer, the star (*) commands provide access to the operating system.</p>
+</div>
+<div class="paragraph">
+<p>For the most part, the MOS is transparent to BASIC; most of the operations via the MOS and VDP are accessed via normal BBC BASIC statements, with the following exceptions:</p>
 </div>
 <div class="sect3">
-<h4 id="_file_specifiers"><a class="anchor" href="#_file_specifiers"></a><span id="specifiers">File Specifiers</span></h4>
+<h4 id="_accessing_the_mos_system_variablesaccessing_the_mos_system_variables"><a class="anchor" href="#_accessing_the_mos_system_variablesaccessing_the_mos_system_variables"></a><a href="#accessing-the-mos-system-variables" class="bare">#accessing-the-mos-system-variables</a>Accessing the MOS system variables</h4>
 <div class="paragraph">
-<p>File specifiers must comply with the standard CP/M-80 conventions.</p>
+<p>MOS has a small system variables area which is in an area of RAM outside of its 64K segment. To access these, you will need to do an OSBYTE call</p>
+</div>
+<div class="paragraph">
+<p>Example: Print the least significant byte of the internal clock counter</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">[drive:]filename.extension</code></pre>
+<pre class="highlightjs highlight"><code class="language-notranslate hljs" data-lang="notranslate">10 L%=&amp;00 : REM The system variable to fetch
+20 A%=&amp;A0 : REM The OSBYTE number
+30 PRINT USR(&amp;FFF4)</code></pre>
 </div>
 </div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>drive:</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The single letter name (A to P) of the drive where the file will be found. The colon is mandatory. If the drive name is omitted, the currently logged-on drive is assumed.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>filename</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The name of the file. The length of the name must not exceed 8 characters.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>extension</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The optional extension of the file. If an extension is used it must be separated from the filename by a full-stop. If the extension is omitted, .BBC is assumed.</p></td>
-</tr>
-</tbody>
-</table>
 <div class="paragraph">
-<p>Drives A: to P: are accepted in file specifications. Filenames in star commands may optionally be enclosed in quotes; unmatched quotes will cause a '<a href="annexc.html#badstring">Bad string</a>' error. The standard CP/M-80 'wild-cards' may be used when an ambiguous file specifier is acceptable.</p>
+<p>For a full list of system variables, please refer to <a href="https://github.com/breakintoprogram/agon-mos/blob/main/src/mos_api.inc">mos_api.inc</a>.</p>
 </div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">`?        `</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Allow any single character in this position. If this is used as the last character in the name, a null character will be accepted.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>*</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Allow any character (including a null) from the position of the '*' to the end of the name or extension.</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect3">
-<h4 id="_symbols"><a class="anchor" href="#_symbols"></a><span id="symbols">Symbols</span></h4>
-<div class="paragraph">
-<p>The following symbols and abbreviations are used as part of the explanation of the operating system commands.</p>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">\{}</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The enclosed items may be repeated 0 or more times.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">[]</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The items enclosed are optional, they may occur zero or one time.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">num</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">A numeric constant.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">str</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">A string constant.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;num&gt;</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">A numeric variable.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;str&gt;</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">A string variable.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">afsp</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">An ambiguous file specifier.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ufsp</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">An unambiguous file specifier.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">d:</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">A disk drive name.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">dir</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">A directory name.</p></td>
-</tr>
-</tbody>
-</table>
 <hr>
 </div>
 </div>
@@ -291,7 +209,7 @@ OSCLI("BYE")</code></pre>
 <div class="sect3">
 <h4 id="_case_conversion"><a class="anchor" href="#_case_conversion"></a><span id="case">Case Conversion</span></h4>
 <div class="paragraph">
-<p>Star commands and their associated qualifiers are converted from lower-case to upper-case if necessary. For example, *era wombat is converted to *ERA WOMBAT. This is in keeping with the general CP/M-80 philosophy and the BBC Micro&#8217;s machine operating system (MOS).</p>
+<p>Star commands and their associated qualifiers are converted from lower-case to upper-case if necessary. For example, \*era wombat is converted to \*ERA WOMBAT.</p>
 </div>
 </div>
 <div class="sect3">
@@ -331,6 +249,33 @@ OSCLI("BYE")</code></pre>
 </tr>
 </tbody>
 </table>
+</div>
+<div class="sect3">
+<h4 id="_running_star_commands_with_variablesrunning_star_commands_with_variables"><a class="anchor" href="#_running_star_commands_with_variablesrunning_star_commands_with_variables"></a><a href="#running-star-commands-with-variables" class="bare">#running-star-commands-with-variables</a>Running star commands with variables</h4>
+<div class="paragraph">
+<p>The star command parser does not use the same evaluator as BBC BASIC, so whilst commands can be run in BASIC, variable names are treated as literals.</p>
+</div>
+<div class="paragraph">
+<p>Example: This will not work</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">10 INPUT "Filename";f$
+20 INPUT "Load Address";addr%
+30 *LOAD f$ addr%</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To do this correctly, you must call the star command indirectly using the OSCLI command</p>
+</div>
+<div class="paragraph">
+<p>Example: This will work</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">30 OSCLI("LOAD " + f$ + " " + STR$(addr%))</code></pre>
+</div>
+</div>
 </div>
 </div>
 </div>
