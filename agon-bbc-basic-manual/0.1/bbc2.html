@@ -185,16 +185,15 @@
 <div class="sect2">
 <h3 id="_the_line_editor"><a class="anchor" href="#_the_line_editor"></a><span id="editing">The Line Editor</span></h3>
 <div class="paragraph">
-<p>The <a href="bbckey1.html#edit">EDIT</a> command may be used to edit or concatenate-and-edit the specified program line(s). The specified lines (including their line numbers) are listed as a single line. By changing only the line number, you can also use EDIT to duplicate a line.</p>
+<p>The <a href="bbckey1.html#edit">EDIT</a> command may be used to edit the specified program line. By changing only the line number, you can also use EDIT to duplicate a line.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">*EDIT 230
-*EDIT 200,230</code></pre>
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">*EDIT 230</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The following control functions are active in the immediate and edit modes and in response to an <a href="bbckey2.html#input">INPUT</a> command in a program. The codes shown are the default codes as supplied; they may be changed by editing the <strong>BBCDIST.MAC</strong> <a href="bbc1.html#configuration">patch program</a>:</p>
+<p>The following control functions are active in the immediate and edit modes and in response to an <a href="bbckey2.html#input">INPUT</a> command in a program:</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -202,50 +201,6 @@
 <col style="width: 50%;">
 </colgroup>
 <tbody>
-<tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock">Ctrl/E</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Move the cursor up one line</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock">Ctrl/X</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Move the cursor down one line</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock">Ctrl/S</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Move the cursor left one character</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock">Ctrl/D</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Move the cursor right one character</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock">Ctrl/A</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Move the cursor to the start of the line</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock">Ctrl/F</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Move the cursor to the end of the line</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock">Del</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Backspace and delete</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock">Ctrl/G</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Delete the character at the cursor</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock">Ctrl/U</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Clear line to the left of the cursor</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock">Ctrl/T</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Clear the line to the right of the cursor</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock">Ctrl/V</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Insert a space at the cursor position</p></td>
-</tr>
 <tr>
 <td class="tableblock halign-center valign-top"><p class="tableblock">Enter</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enter the line and exit the edit mode</p></td>
@@ -258,9 +213,6 @@
 </table>
 <div class="paragraph">
 <p>To abort the single line editor and leave the line unchanged, press &lt;Esc&gt;.</p>
-</div>
-<div class="paragraph">
-<p>You can use the <a href="bbckey1.html#edit">EDIT</a> command to edit and join (concatenate) program lines. When you use it to join lines, remember to delete any unwanted ones. EDIT on its own will start at the beginning of the program and concatenate as many lines as it can. This process will stop when the concatenated line length exceeds 255.</p>
 </div>
 <hr>
 </div>
