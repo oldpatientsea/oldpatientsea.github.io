@@ -179,65 +179,12 @@
 </div>
 <div class="sect3">
 <h4 id="_the_memory_map"><a class="anchor" href="#_the_memory_map"></a><span id="memorymap">The Memory Map</span></h4>
-<table class="tableblock frame-all grid-all stretch">
-</table>
-<div class="paragraph">
-<p>|HIMEM
-|LOMEM/TOP
-|PAGE</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/MemoryMapRTRussell.png" alt="Memory Map, by R. T. Russell">
 </div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 100%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"></div></td>
-</tr>
-</tbody>
-</table>
-<div class="paragraph">
-<p>|</p>
+<div class="title">Figure 1. Memory Map by R. T. Russell</div>
 </div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 100%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">[width="100%",cols="^100%",]</p></td>
-</tr>
-</tbody>
-</table>
-<div class="paragraph">
-<p>|Stack<br>
-↓
-|(unused)
-|↑<br>
-Heap
-|User&#8217;s Program
-|Interpreter and workspace</p>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 100%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"></div></td>
-</tr>
-</tbody>
-</table>
-<div class="paragraph">
-<p>|Top of Transient Program Area
-|Current limit of stack
-|Current limit of heap
-|Heap base/end of program
-|Start of program
-|&amp;100</p>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-</table>
 <div class="paragraph">
 <p>The function of <a href="bbckey2.html#himem">HIMEM</a>, <a href="bbckey2.html#lomem">LOMEM</a>, <a href="bbckey4.html#top">TOP</a> and <a href="bbckey3.html#page">PAGE</a> are briefly discussed below. You will find more complete definitions elsewhere in this manual. You can directly set HIMEM, LOMEM and PAGE. However, for most of your programs you won&#8217;t need to alter any of them. You will probably only need to change HIMEM if you want to put some machine code sub-routines at the top of memory.</p>
 </div>
@@ -323,61 +270,11 @@ Heap
 <div class="paragraph">
 <p>The program is stored in memory in the format shown below. The first program line commences at <a href="bbckey3.html#page">PAGE</a>.</p>
 </div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 8.3333%;">
-<col style="width: 8.3333%;">
-<col style="width: 8.3333%;">
-<col style="width: 8.3333%;">
-<col style="width: 8.3333%;">
-<col style="width: 8.3333%;">
-<col style="width: 8.3333%;">
-<col style="width: 8.3333%;">
-<col style="width: 8.3333%;">
-<col style="width: 8.3333%;">
-<col style="width: 8.3333%;">
-<col style="width: 8.3337%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock">length</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">LSB</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">MSB</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">token</p></td>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><strong>:</strong></p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">token</p></td>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">&amp;0D</p></td>
-</tr>
-</tbody>
-</table>
-<div class="paragraph">
-<p>↑</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/ProgramStorageinMemory.png" alt="Program Storage in Memory, by R. T. Russell">
 </div>
-<div class="paragraph">
-<p>Reserved Word Tokens</p>
-</div>
-<div class="paragraph">
-<p>↑</p>
-</div>
-<div class="paragraph">
-<p>CR</p>
-</div>
-<div class="paragraph">
-<p>Line No</p>
-</div>
-<div class="paragraph">
-<p>←</p>
-</div>
-<div class="paragraph">
-<p>Program Line</p>
-</div>
-<div class="paragraph">
-<p>→</p>
+<div class="title">Figure 2. Program Storage in Memory by R. T. Russell</div>
 </div>
 <div class="sect3">
 <h4 id="_line_length"><a class="anchor" href="#_line_length"></a><span id="linelength">Line Length</span></h4>
@@ -418,117 +315,20 @@ Heap
 <div class="paragraph">
 <p>Integers are held in two&#8217;s complement format. They occupy 4 bytes, with the LSB first. Bit 7 of the MSB is the sign bit. To make up the complete variable, the address word, the name and a separator (zero) byte are added to the number. The format of the memory occupied by an integer variable called 'NUMBER%' is shown below. Note that since the first character of the name is found via the index, it is not stored with the variable.</p>
 </div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 7.6923%;">
-<col style="width: 7.6923%;">
-<col style="width: 7.6923%;">
-<col style="width: 7.6923%;">
-<col style="width: 7.6923%;">
-<col style="width: 7.6923%;">
-<col style="width: 7.6923%;">
-<col style="width: 7.6923%;">
-<col style="width: 7.6923%;">
-<col style="width: 7.6923%;">
-<col style="width: 7.6923%;">
-<col style="width: 7.6923%;">
-<col style="width: 7.6924%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock">LSB</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">MSB</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">U</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">M</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">B</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">E</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">R</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">%</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">&amp;00</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">LSB</p></td>
-<td class="tableblock halign-center valign-top"></td>
-<td class="tableblock halign-center valign-top"></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">MSB</p></td>
-</tr>
-</tbody>
-</table>
-<div class="paragraph">
-<p>↑</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/IntegerVariables.png" alt="Integer Variables, by R. T. Russell">
 </div>
-<div class="paragraph">
-<p>↑</p>
-</div>
-<div class="paragraph">
-<p>←</p>
-</div>
-<div class="paragraph">
-<p>Rest of Name</p>
-</div>
-<div class="paragraph">
-<p>→</p>
-</div>
-<div class="paragraph">
-<p>←</p>
-</div>
-<div class="paragraph">
-<p>Value</p>
-</div>
-<div class="paragraph">
-<p>→</p>
-</div>
-<div class="paragraph">
-<p>Address of next variable</p>
-</div>
-<div class="paragraph">
-<p>starting with the same letter</p>
+<div class="title">Figure 3. Integer Variables by R. T. Russell</div>
 </div>
 <div class="paragraph">
 <p>The smallest amount of space is taken up by a variable with a single letter name. The static integer variables, which are not included in the variable chains, use the names A% to Z%. Thus, the only single character names available for dynamic integer variables are a% to z% plus _% and <strong>`</strong>% (CHR$(96)). As shown below, integer variables with these names will occupy 8 bytes.</p>
 </div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 12.5%;">
-<col style="width: 12.5%;">
-<col style="width: 12.5%;">
-<col style="width: 12.5%;">
-<col style="width: 12.5%;">
-<col style="width: 12.5%;">
-<col style="width: 12.5%;">
-<col style="width: 12.5%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock">LSB</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">MSB</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">%</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">&amp;00</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">LSB</p></td>
-<td class="tableblock halign-center valign-top"></td>
-<td class="tableblock halign-center valign-top"></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">MSB</p></td>
-</tr>
-</tbody>
-</table>
-<div class="paragraph">
-<p>↑</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/StaticIntegerVariables.png" alt="Static Integer Variables, by R. T. Russell">
 </div>
-<div class="paragraph">
-<p>↑</p>
-</div>
-<div class="paragraph">
-<p>←</p>
-</div>
-<div class="paragraph">
-<p>Value</p>
-</div>
-<div class="paragraph">
-<p>→</p>
-</div>
-<div class="paragraph">
-<p>Address of next variable</p>
-</div>
-<div class="paragraph">
-<p>starting with the same letter</p>
+<div class="title">Figure 4. Static Integer Variables by R. T. Russell</div>
 </div>
 </div>
 <div class="sect3">
@@ -536,75 +336,11 @@ Heap
 <div class="paragraph">
 <p>Real numbers are held in binary floating point format. The mantissa is held as a 4 byte binary fraction in sign and magnitude format. Bit 7 of the MSB of the mantissa is the sign bit. When working out the value of the mantissa, this bit is assumed to be 1 (a decimal value of 0.5). The exponent is held as a single byte in 'excess 127' format. In other words, if the actual exponent is zero, the value of stored in the exponent byte is 127. To make up the complete variable, the address word, the name and a separator (zero) byte are added to the number. The format of the memory occupied by a real variable called 'NUMBER' is shown below.</p>
 </div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 7.6923%;">
-<col style="width: 7.6923%;">
-<col style="width: 7.6923%;">
-<col style="width: 7.6923%;">
-<col style="width: 7.6923%;">
-<col style="width: 7.6923%;">
-<col style="width: 7.6923%;">
-<col style="width: 7.6923%;">
-<col style="width: 7.6923%;">
-<col style="width: 7.6923%;">
-<col style="width: 7.6923%;">
-<col style="width: 7.6923%;">
-<col style="width: 7.6924%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock">LSB</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">MSB</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">U</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">M</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">B</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">E</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">R</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">&amp;00</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">LSB</p></td>
-<td class="tableblock halign-center valign-top"></td>
-<td class="tableblock halign-center valign-top"></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">MSB</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">EXP</p></td>
-</tr>
-</tbody>
-</table>
-<div class="paragraph">
-<p>↑</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/RealVariables.png" alt="Real Variables, by R. T. Russell">
 </div>
-<div class="paragraph">
-<p>↑</p>
-</div>
-<div class="paragraph">
-<p>←</p>
-</div>
-<div class="paragraph">
-<p>Rest of Name</p>
-</div>
-<div class="paragraph">
-<p>→</p>
-</div>
-<div class="paragraph">
-<p>←</p>
-</div>
-<div class="paragraph">
-<p>Mantissa</p>
-</div>
-<div class="paragraph">
-<p>→</p>
-</div>
-<div class="paragraph">
-<p>↑</p>
-</div>
-<div class="paragraph">
-<p>Address of next variable</p>
-</div>
-<div class="paragraph">
-<p>Exponent</p>
-</div>
-<div class="paragraph">
-<p>starting with the same letter</p>
+<div class="title">Figure 5. Real Variables by R. T. Russell</div>
 </div>
 <div class="paragraph">
 <p>As with integer variables, variables with single character names occupy the least memory. (However, the names A to Z are available for dynamic real variables.) Whilst a real variable requires an extra byte to store the number, the '%' character is not needed in the name. Thus, integer and real variables with the same name occupy the same amount of memory. However, this does not hold for arrays, since the name is only stored once.</p>
@@ -615,100 +351,11 @@ Heap
 <div class="paragraph">
 <p>The value 5.5 would be stored as shown below.</p>
 </div>
-<div class="quoteblock">
-<blockquote>
-<div class="paragraph">
-<p>Mantissa</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/StorageofValue5pt5.png" alt="Storage of Value 5.5, by R. T. Russell">
 </div>
-</blockquote>
-</div>
-<div class="paragraph">
-<p>`  <code>Exponent</code>  `</p>
-</div>
-<div class="paragraph">
-<div class="title">0011 0000</div>
-<p>0000 0000</p>
-</div>
-<div class="paragraph">
-<p>0000 0000</p>
-</div>
-<div class="paragraph">
-<p>0000 0000</p>
-</div>
-<div class="paragraph">
-<p>1000 0010</p>
-</div>
-<div class="paragraph">
-<p>↑Sign Bit</p>
-</div>
-<div class="paragraph">
-<p>&amp;30</p>
-</div>
-<div class="paragraph">
-<p>00</p>
-</div>
-<div class="paragraph">
-<p>00</p>
-</div>
-<div class="paragraph">
-<p>00</p>
-</div>
-<div class="paragraph">
-<p>&amp;82</p>
-</div>
-<div class="paragraph">
-<p>Because the sign bit is assumed to be 1, this would become:</p>
-</div>
-<div class="quoteblock">
-<blockquote>
-<div class="paragraph">
-<p>Mantissa</p>
-</div>
-</blockquote>
-</div>
-<div class="paragraph">
-<p>`  <code>Exponent</code>  `</p>
-</div>
-<div class="paragraph">
-<div class="title">1011 0000</div>
-<p>0000 0000</p>
-</div>
-<div class="paragraph">
-<p>0000 0000</p>
-</div>
-<div class="paragraph">
-<p>0000 0000</p>
-</div>
-<div class="paragraph">
-<p>1000 0010</p>
-</div>
-<div class="paragraph">
-<p>&amp;B0</p>
-</div>
-<div class="paragraph">
-<p>00</p>
-</div>
-<div class="paragraph">
-<p>00</p>
-</div>
-<div class="paragraph">
-<p>00</p>
-</div>
-<div class="paragraph">
-<p>&amp;82</p>
-</div>
-<div class="paragraph">
-<p>The equivalent in decimal is:</p>
-</div>
-<div class="quoteblock">
-<blockquote>
-<div class="paragraph">
-<p>     (0.5+0.125+0.0625) * 2^(130-127)<br>
-=   0.6875 * 2^3<br>
-=   0.6875 * 8<br>
-=   5.5</p>
-</div>
-</blockquote>
+<div class="title">Figure 6. Storage of Value 5.5 by R. T. Russell</div>
 </div>
 <div class="paragraph">
 <p>BBC BASIC (Z80) stores integer values in real variables in a special way which allows the faster integer arithmetic routines to be used if appropriate. The presence of an integer value in a real variable is indicated by the stored exponent being zero. Thus, if the stored exponent is zero, the real variable is being used to hold an integer and the 4 byte mantissa holds the number in normal integer format.</p>
@@ -735,167 +382,11 @@ Heap
 <div class="paragraph">
 <p>The two ways of storing an integer value are illustrated in the following four examples.</p>
 </div>
-<div class="paragraph">
-<p><strong>Example 1</strong></p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/ExamplesofStoringIntegerValue.png" alt="Examples of Storing Integer Value, by R. T. Russell">
 </div>
-<div class="paragraph">
-<p>`  number=5      `</p>
-</div>
-<div class="paragraph">
-<p>&amp; 00</p>
-</div>
-<div class="paragraph">
-<p>00</p>
-</div>
-<div class="paragraph">
-<p>00</p>
-</div>
-<div class="paragraph">
-<p>00</p>
-</div>
-<div class="paragraph">
-<p>05</p>
-</div>
-<div class="paragraph">
-<p>Integer 5</p>
-</div>
-<div class="paragraph">
-<p><strong>Example 2</strong></p>
-</div>
-<div class="paragraph">
-<p>`  number=5.0`</p>
-</div>
-<div class="paragraph">
-<p>&amp; 82</p>
-</div>
-<div class="paragraph">
-<p>20</p>
-</div>
-<div class="paragraph">
-<p>00</p>
-</div>
-<div class="paragraph">
-<p>00</p>
-</div>
-<div class="paragraph">
-<p>00</p>
-</div>
-<div class="paragraph">
-<p>Real 5.0</p>
-</div>
-<div class="paragraph">
-<p>This is treated as</p>
-</div>
-<div class="paragraph">
-<p>&amp; 82</p>
-</div>
-<div class="paragraph">
-<p>A0</p>
-</div>
-<div class="paragraph">
-<p>00</p>
-</div>
-<div class="paragraph">
-<p>00</p>
-</div>
-<div class="paragraph">
-<p>00</p>
-</div>
-</div>
-</div>
-<h1 id="" class="sect0"><a class="anchor" href="#"></a>+</h1>
-
-<h1 id="_2" class="sect0"><a class="anchor" href="#_2"></a>+</h1>
-<div class="paragraph">
-<p>=</p>
-</div>
-<div class="paragraph">
-<p>(0.5+0.125)*2^(130-127)<br>
-0.625*8<br>
-5</p>
-</div>
-<div class="paragraph">
-<p>because the sign bit is assumed to be 1.</p>
-</div>
-<div class="paragraph">
-<p><strong>Example 3</strong></p>
-</div>
-<div class="paragraph">
-<p>`  number=-5`</p>
-</div>
-<div class="paragraph">
-<p>&amp; 00</p>
-</div>
-<div class="paragraph">
-<p>FF</p>
-</div>
-<div class="paragraph">
-<p>FF</p>
-</div>
-<div class="paragraph">
-<p>FF</p>
-</div>
-<div class="paragraph">
-<p>FB</p>
-</div>
-<div class="paragraph">
-<p>The 2&#8217;s complement gives</p>
-</div>
-<div class="paragraph">
-<p>&amp; 00</p>
-</div>
-<div class="paragraph">
-<p>00</p>
-</div>
-<div class="paragraph">
-<p>00</p>
-</div>
-<div class="paragraph">
-<p>00</p>
-</div>
-<div class="paragraph">
-<p>05</p>
-</div>
-<div class="paragraph">
-<p>Integer -5</p>
-</div>
-<div class="paragraph">
-<p><strong>Example 4</strong></p>
-</div>
-<div class="paragraph">
-<p>`  number=-5.0`</p>
-</div>
-<div class="paragraph">
-<p>&amp; 82</p>
-</div>
-<div class="paragraph">
-<p>A0</p>
-</div>
-<div class="paragraph">
-<p>00</p>
-</div>
-<div class="paragraph">
-<p>00</p>
-</div>
-<div class="paragraph">
-<p>00</p>
-</div>
-<div class="paragraph">
-<p>Real -5.0</p>
-</div>
-<div class="paragraph">
-<p>(The sign bit is already 1)</p>
-</div>
-<h1 id="_3" class="sect0"><a class="anchor" href="#_3"></a>+</h1>
-
-<h1 id="_4" class="sect0"><a class="anchor" href="#_4"></a>+</h1>
-<div class="paragraph">
-<p>Magnitude =</p>
-</div>
-<div class="paragraph">
-<p>(0.5+0.125)*2^(130-127)<br>
-0.625*8<br>
-5<br></p>
+<div class="title">Figure 7. Examples of Storing Integer Value by R. T. Russell</div>
 </div>
 <div class="paragraph">
 <p>If all this seems a little complicated, try using the program on the next page to accept a number from the keyboard and display the way it is stored in memory. The program displays the 4 bytes of the mantissa in 'human readable order' followed by the exponent byte. Look at what happens when you input first 5 and then 5.0 and you will see how this corresponds to the explanation given above. Then try -5 and -5.0 and then some other numbers. (The program is an example of the use of the byte indirection operator. See the <a href="bbc2.html#indirection">Indirection</a> section for details.)</p>
@@ -903,61 +394,11 @@ Heap
 <div class="paragraph">
 <p>The layout of the variable 'NMBR' in memory is shown below.</p>
 </div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 8.3333%;">
-<col style="width: 8.3333%;">
-<col style="width: 8.3333%;">
-<col style="width: 8.3333%;">
-<col style="width: 8.3333%;">
-<col style="width: 8.3333%;">
-<col style="width: 8.3333%;">
-<col style="width: 8.3333%;">
-<col style="width: 8.3333%;">
-<col style="width: 8.3333%;">
-<col style="width: 8.3333%;">
-<col style="width: 8.3337%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock">LSB</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">MSB</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">M</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">B</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">R</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">&amp;00</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">LSB</p></td>
-<td class="tableblock halign-center valign-top"></td>
-<td class="tableblock halign-center valign-top"></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">MSB</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">EXP</p></td>
-<td class="tableblock halign-center valign-top"></td>
-</tr>
-</tbody>
-</table>
-<div class="paragraph">
-<p>↑</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/LayoutofVariableNMBR.png" alt="Layout of Variable 'NMBR', by R. T. Russell">
 </div>
-<div class="paragraph">
-<p>↑</p>
-</div>
-<div class="paragraph">
-<p>A%-5 points here</p>
-</div>
-<div class="paragraph">
-<p>A%-2 points here</p>
-</div>
-<div class="paragraph">
-<p>↑</p>
-</div>
-<div class="paragraph">
-<p>A%-1 points here</p>
-</div>
-<div class="paragraph">
-<p>↑</p>
-</div>
-<div class="paragraph">
-<p>A% points here</p>
+<div class="title">Figure 8. Layout of the Variable NMBR in Memory by R. T. Russell</div>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -983,79 +424,17 @@ Heap
 200 UNTIL NUMBER=0</code></pre>
 </div>
 </div>
+</div>
 <div class="sect3">
 <h4 id="_string_variables"><a class="anchor" href="#_string_variables"></a><span id="string">String Variables</span></h4>
 <div class="paragraph">
 <p>String variables are stored as the string of characters. Since the current length of the string is stored in memory an explicit terminator for the string in unnecessary. As with numeric variables, the first word of the complete variable is the address of the next variable starting with the same character. However, since BBC BASIC (Z80) needs information about the length of the string and the address in memory where the it starts, the overheads for a string are more than for a numeric. The format of a string variable called 'NAME$' is shown below.</p>
 </div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 9.0909%;">
-<col style="width: 9.0909%;">
-<col style="width: 9.0909%;">
-<col style="width: 9.0909%;">
-<col style="width: 9.0909%;">
-<col style="width: 9.0909%;">
-<col style="width: 9.0909%;">
-<col style="width: 9.0909%;">
-<col style="width: 9.0909%;">
-<col style="width: 9.0909%;">
-<col style="width: 9.091%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock">LSB</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">MSB</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">A</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">M</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">E</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">$</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">&amp;00</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">len</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">max</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">LSB</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">MSB</p></td>
-</tr>
-</tbody>
-</table>
-<div class="paragraph">
-<p>↑</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/StringVariables.png" alt="String Variables, by R. T. Russell">
 </div>
-<div class="paragraph">
-<p>↑</p>
-</div>
-<div class="paragraph">
-<p>←</p>
-</div>
-<div class="paragraph">
-<p>Rest of name</p>
-</div>
-<div class="paragraph">
-<p>→</p>
-</div>
-<div class="paragraph">
-<p>↑</p>
-</div>
-<div class="paragraph">
-<p>↑</p>
-</div>
-<div class="paragraph">
-<p>↑</p>
-</div>
-<div class="paragraph">
-<p>Address of next variable</p>
-</div>
-<div class="paragraph">
-<p>Current string length</p>
-</div>
-<div class="paragraph">
-<p>String start address</p>
-</div>
-<div class="paragraph">
-<p>starting with the same letter</p>
-</div>
-<div class="paragraph">
-<p>Max (original) length ↑`  `</p>
+<div class="title">Figure 9. String Variables by R. T. Russell</div>
 </div>
 <div class="paragraph">
 <p>When a string variable is first created in memory, the characters of the string follow immediately after the two bytes containing the start address of the string and the current and maximum lengths are the same. While the current length of the string does not exceed its length when created, the characters of the string will follow the address bytes. When the string variable is set to a string which is longer than its original length, there will be insufficient room in the original position for the characters of the string. When this happens, the string will be placed on the top of the heap and the new start address will be loaded into the two address bytes. The original string space will remain, but it will be unusable. This unusable string space is called 'garbage'. See the <a href="bbc2.html#variables">Variables</a> sub-section for ways to avoid creating <a href="bbc2.html#garbage">garbage</a>.</p>
@@ -1076,6 +455,7 @@ Heap
 </div>
 <div class="paragraph">
 <p>would place &amp;54 (T) at address &amp;8000, &amp;68 (h) at address &amp;8001, etc. Because the string is placed at a predetermined location in memory it is called a 'fixed' string. Fixed strings are not included in the variable chains and they do not have the overheads associated with a string variable. However, since the length of the string is not stored, an explicit terminator (&amp;0D) is used. Consequently, in the above example, byte &amp;8010 would be set to &amp;0D.</p>
+</div>
 </div>
 </div>
 </article>
