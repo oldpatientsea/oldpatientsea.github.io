@@ -159,12 +159,13 @@
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
+<div class="sect1">
+<h2 id="_format_of_program_and_variables_in_memory"><a class="anchor" href="#_format_of_program_and_variables_in_memory"></a>Format of Program and Variables in Memory</h2>
+<div class="sectionbody">
 <div class="sect2">
 <h3 id="_annex_d_to_bbc_basic_z80"><a class="anchor" href="#_annex_d_to_bbc_basic_z80"></a>Annex D to BBC BASIC (Z80)</h3>
-
-</div>
-<div class="sect2">
-<h3 id="_memory_map"><a class="anchor" href="#_memory_map"></a><span id="memorymap">Memory Map</span></h3>
+<div class="sect3">
+<h4 id="_memory_map"><a class="anchor" href="#_memory_map"></a><span id="memorymap">Memory Map</span></h4>
 <div class="paragraph">
 <p>BBC BASIC (Z80) runs under the CP/M-80 operating system. It requires about 15 Kbytes of code space. The interpreter&#8217;s internal variables occupy approximately 1 Kbyte of memory</p>
 </div>
@@ -180,8 +181,8 @@
 <div class="paragraph">
 <p>In addition to running your program, the stack is also used 'internally' by the BBC BASIC (Z80) interpreter. Its size fluctuates but, in general, it expands every time you increase the depth of nesting of your program structure and every time you increase the number of local variables in use.</p>
 </div>
-<div class="sect3">
-<h4 id="_the_memory_map"><a class="anchor" href="#_the_memory_map"></a><span id="memorymap">The Memory Map</span></h4>
+<div class="sect4">
+<h5 id="_the_memory_map"><a class="anchor" href="#_the_memory_map"></a><span id="memorymap">The Memory Map</span></h5>
 <div class="imageblock">
 <div class="content">
 <img src="_images/MemoryMapRTRussell.png" alt="Memory Map, by R. T. Russell">
@@ -225,27 +226,27 @@
 <hr>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_memory_management"><a class="anchor" href="#_memory_management"></a><span id="management">Memory Management</span></h3>
+<div class="sect3">
+<h4 id="_memory_management"><a class="anchor" href="#_memory_management"></a><span id="management">Memory Management</span></h4>
 <div class="paragraph">
 <p>There is little you can do to control the growth of the stack. However, with care, you can control the growth of the heap. You can do this by limiting the number of variables you use and by good string variable management.</p>
 </div>
-<div class="sect3">
-<h4 id="_limiting_the_number_of_variables"><a class="anchor" href="#_limiting_the_number_of_variables"></a><span id="limiting">Limiting the Number of Variables</span></h4>
+<div class="sect4">
+<h5 id="_limiting_the_number_of_variables"><a class="anchor" href="#_limiting_the_number_of_variables"></a><span id="limiting">Limiting the Number of Variables</span></h5>
 <div class="paragraph">
 <p>Each new variable occupies room on the heap. Restricting the length of the names of variables and limiting the number of variables used will limit the size of the heap. However, of the techniques available to you, this is the least rewarding. In addition, it leads to incomprehensible programs because your variable names become meaningless. You should keep this technique in the back of your mind whilst you are programming, but only apply it rigorously if you are really stuck for space.</p>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_string_management"><a class="anchor" href="#_string_management"></a><span id="stringmanage">String Management</span></h4>
 <div class="sect4">
-<h5 id="_garbage_generation"><a class="anchor" href="#_garbage_generation"></a><span id="garbage">Garbage Generation</span></h5>
+<h5 id="_string_management"><a class="anchor" href="#_string_management"></a><span id="stringmanage">String Management</span></h5>
+<div class="sect5">
+<h6 id="_garbage_generation"><a class="anchor" href="#_garbage_generation"></a><span id="garbage">Garbage Generation</span></h6>
 <div class="paragraph">
 <p>Unlike numeric variables, string variables do not have a fixed length. When you create a string variable it is added to the heap and sufficient memory is allocated for the initial value of the string. If you subsequently assign a longer string to the variable there will be insufficient room for it in its original position and the string will have to be relocated with its new value at the top of the heap. The initial area will then become 'dead' and the heap will have grown by the new length of the string. The areas of 'dead' memory are called garbage. As more and more re-assignments take place, the heap grows and eventually there is no more room. Thus, it is possible to run out of room for variables even though there should be enough space.</p>
 </div>
 </div>
-<div class="sect4">
-<h5 id="_memory_allocation_for_string_variables"><a class="anchor" href="#_memory_allocation_for_string_variables"></a><span id="stringallocation">Memory Allocation for String Variables</span></h5>
+<div class="sect5">
+<h6 id="_memory_allocation_for_string_variables"><a class="anchor" href="#_memory_allocation_for_string_variables"></a><span id="stringallocation">Memory Allocation for String Variables</span></h6>
 <div class="paragraph">
 <p>You can overcome the problem of 'garbage' by reserving enough memory for the longest string you will ever put into a variable before you use it. You do this simply by assigning a string of spaces to the variable. If your program needs to find an empty string the first time it is used, you can subsequently assign a null string to it. The same technique can be used for string arrays. The example below sets up a single dimensional string array with room for 20 characters in each entry, and then empties it.</p>
 </div>
@@ -268,8 +269,8 @@
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_program_storage_in_memory"><a class="anchor" href="#_program_storage_in_memory"></a><span id="programstorage">Program Storage in Memory</span></h3>
+<div class="sect3">
+<h4 id="_program_storage_in_memory"><a class="anchor" href="#_program_storage_in_memory"></a><span id="programstorage">Program Storage in Memory</span></h4>
 <div class="paragraph">
 <p>The program is stored in memory in the format shown below. The first program line commences at <a href="bbckey3.html#page">PAGE</a>.</p>
 </div>
@@ -279,22 +280,23 @@
 </div>
 <div class="title">Figure 2. Program Storage in Memory by R. T. Russell</div>
 </div>
-<div class="sect3">
-<h4 id="_line_length"><a class="anchor" href="#_line_length"></a><span id="linelength">Line Length</span></h4>
+<div class="sect4">
+<h5 id="_line_length"><a class="anchor" href="#_line_length"></a><span id="linelength">Line Length</span></h5>
 <div class="paragraph">
 <p>The line length includes the line length byte. The address of the start of the next line is found by adding the line length to the address of the start of the current line. The end of the program is indicated by a line length of zero and a line number of &amp;FFFF.</p>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_line_number"><a class="anchor" href="#_line_number"></a><span id="linenumber">Line Number</span></h4>
+<div class="sect4">
+<h5 id="_line_number"><a class="anchor" href="#_line_number"></a><span id="linenumber">Line Number</span></h5>
 <div class="paragraph">
 <p>The line number is stored in two bytes, LSB first. The end of the program is indicated by a line number of &amp;FFFF and a line length of zero.</p>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_statements"><a class="anchor" href="#_statements"></a><span id="statements">Statements</span></h4>
+<div class="sect4">
+<h5 id="_statements"><a class="anchor" href="#_statements"></a><span id="statements">Statements</span></h5>
 <div class="paragraph">
 <p>With the exception of the symbols '*', '=' and '[' and the optional reserved word <a href="bbckey2.html#let">LET</a>, each statement in the line commences with the appropriate reserved word token. Reserved words are tokenised wherever they occur. A token is indicated by bit 7 of the byte being set. Statements within a line are separated by colons.</p>
+</div>
 </div>
 </div>
 <div class="sect3">
@@ -302,7 +304,6 @@
 <div class="paragraph">
 <p>Each program line (except the last) is terminated by a carriage-return (&amp;0D).</p>
 </div>
-<hr>
 </div>
 </div>
 <div class="sect2">
@@ -458,6 +459,8 @@
 </div>
 <div class="paragraph">
 <p>would place &amp;54 (T) at address &amp;8000, &amp;68 (h) at address &amp;8001, etc. Because the string is placed at a predetermined location in memory it is called a 'fixed' string. Fixed strings are not included in the variable chains and they do not have the overheads associated with a string variable. However, since the length of the string is not stored, an explicit terminator (&amp;0D) is used. Consequently, in the above example, byte &amp;8010 would be set to &amp;0D.</p>
+</div>
+</div>
 </div>
 </div>
 </div>

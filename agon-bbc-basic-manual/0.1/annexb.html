@@ -167,126 +167,96 @@
 <div class="paragraph">
 <p>BBC BASIC (Z80) has more intrinsic mathematical functions than many other versions of BASIC. Those that are not provided may be calculated as shown below.</p>
 </div>
-<div class="paragraph">
-<p>Function`       `</p>
-</div>
-<div class="paragraph">
-<p>Calculation</p>
-</div>
-<div class="paragraph">
-<p><strong>SECANT</strong></p>
-</div>
-<div class="paragraph">
-<p><code>SEC(X)=1/COS(X)</code></p>
-</div>
-<div class="paragraph">
-<p><strong>COSECANT</strong></p>
-</div>
-<div class="paragraph">
-<p><code>CSC(X)=1/SIN(X)</code></p>
-</div>
-<div class="paragraph">
-<p><strong>COTANGENT</strong></p>
-</div>
-<div class="paragraph">
-<p><code>COT(X)=1/TAN(X)</code></p>
-</div>
-<div class="paragraph">
-<p><strong>Inverse SECANT</strong></p>
-</div>
-<div class="paragraph">
-<p><code>ARCSEC(X)=ACS(1/X)</code></p>
-</div>
-<div class="paragraph">
-<p><strong>Inverse COSECANT</strong></p>
-</div>
-<div class="paragraph">
-<p><code>ARCCSC(X)=ASN(1/X)</code></p>
-</div>
-<div class="paragraph">
-<p><strong>Inverse COTANGENT</strong></p>
-</div>
-<div class="paragraph">
-<p><code>ARCCOT(X)=ATN(1/X) =PI/2-ATN(X)</code></p>
-</div>
-<div class="paragraph">
-<p><strong>Hyperbolic SINE</strong></p>
-</div>
-<div class="paragraph">
-<p><code>SINH(X)=(EXP(X)-EXP(-X))/2</code></p>
-</div>
-<div class="paragraph">
-<p><strong>Hyperbolic COSINE</strong></p>
-</div>
-<div class="paragraph">
-<p><code>COSH(X)=(EXP(X)+EXP(-X))/2</code></p>
-</div>
-<div class="paragraph">
-<p><strong>Hyperbolic TANGENT</strong></p>
-</div>
-<div class="paragraph">
-<p><code>TANH(X)=EXP(-X)/(EXP(X)+EXP(-X))*2+1</code></p>
-</div>
-<div class="paragraph">
-<p><strong>Hyperbolic SECANT</strong></p>
-</div>
-<div class="paragraph">
-<p><code>SECH(X)=2/(EXP(X)+EXP(-X))</code></p>
-</div>
-<div class="paragraph">
-<p><strong>Hyperbolic COSECANT</strong></p>
-</div>
-<div class="paragraph">
-<p><code>CSCH(X)=2/(EXP(X)-EXP(-X))</code></p>
-</div>
-<div class="paragraph">
-<p><strong>Hyperbolic COTANGENT</strong></p>
-</div>
-<div class="paragraph">
-<p><code>COTH(X)=EXP(-X)/(EXP(X)-EXP(-X))*2+1</code></p>
-</div>
-<div class="paragraph">
-<p><strong>Inverse Hyperbolic SIN</strong></p>
-</div>
-<div class="paragraph">
-<p><code>ARCSINH(X)=LN(X+SQR(X*X+1))</code></p>
-</div>
-<div class="paragraph">
-<p><strong>Inverse Hyperbolic COSINE</strong></p>
-</div>
-<div class="paragraph">
-<p><code>ARCCOSH(X)=LN(X+SQR(X*X-1))</code></p>
-</div>
-<div class="paragraph">
-<p><strong>Inverse Hyperbolic TANGENT</strong></p>
-</div>
-<div class="paragraph">
-<p><code>ARCTANH(X)=LN1+X)/(1-X/2</code></p>
-</div>
-<div class="paragraph">
-<p><strong>Inverse Hyperbolic SECANT</strong></p>
-</div>
-<div class="paragraph">
-<p><code>ARCSECH(X)=LN((SQR(-X*X+1)+1)/X)</code></p>
-</div>
-<div class="paragraph">
-<p><strong>Inverse Hyperbolic COSECANT</strong></p>
-</div>
-<div class="paragraph">
-<p><code>ARCCSCH(X)=LN((SGN(X)*SQR(X*X+1)+1)/X</code></p>
-</div>
-<div class="paragraph">
-<p><strong>Inverse Hyperbolic COTANGENT</strong></p>
-</div>
-<div class="paragraph">
-<p><code>ARCCOTH(X)=LNX+1)/(X-1/2</code></p>
-</div>
-<div class="paragraph">
-<p><strong>LOGn(X)</strong></p>
-</div>
-<div class="paragraph">
-<p>`LOGn(X)=LN(X)/LN(n) =LOG(X)/LOG(n) `</p>
-</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Function</th>
+<th class="tableblock halign-left valign-top">Calculation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>SECANT</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>SEC(X)=1/COS(X)</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>COSECANT</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>CSC(X)=1/SIN(X)</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>COTANGENT</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>COT(X)=1/TAN(X)</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Inverse SECANT</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ARCSEC(X)=ACS(1/X)</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Inverse COSECANT</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ARCCSC(X)=ASN(1/X)</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Inverse COTANGENT</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ARCCOT(X)=ATN(1/X) =PI/2-ATN(X)</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Hyperbolic SINE</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>SINH(X)=(EXP(X)-EXP(-X))/2</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Hyperbolic COSINE</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>COSH(X)=(EXP(X)+EXP(-X))/2</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Hyperbolic TANGENT</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>TANH(X)=EXP(-X)/(EXP(X)+EXP(-X))*2+1</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Hyperbolic SECANT</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>SECH(X)=2/(EXP(X)+EXP(-X))</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Hyperbolic COSECANT</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>CSCH(X)=2/(EXP(X)-EXP(-X))</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Hyperbolic COTANGENT</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>COTH(X)=EXP(-X)/(EXP(X)-EXP(-X))*2+1</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Inverse Hyperbolic SIN</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ARCSINH(X)=LN(X+SQR(X*X+1))</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Inverse Hyperbolic COSINE</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ARCCOSH(X)=LN(X+SQR(X*X-1))</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Inverse Hyperbolic TANGENT</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ARCTANH(X)=LN1+X)/(1-X/2</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Inverse Hyperbolic SECANT</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ARCSECH(X)=LN((SQR(-X*X+1)+1)/X)</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Inverse Hyperbolic COSECANT</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ARCCSCH(X)=LN((SGN(X)*SQR(X*X+1)+1)/X</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Inverse Hyperbolic COTANGENT</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ARCCOTH(X)=LNX+1)/(X-1/2</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>LOGn(X)</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>LOGn(X)=LN(X)/LN(n) =LOG(X)/LOG(n)</code></p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
