@@ -1587,16 +1587,22 @@ y=(top+bottom+1) DIV 2</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_edit_e"><a class="anchor" href="#_edit_e"></a><span id="edit">EDIT</span>, E.</h2>
+<h2 id="_edit"><a class="anchor" href="#_edit"></a><span id="edit">* EDIT</span></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Instead of implenting an EDIT keywords, BBC BASIC for Z80 (Agon) delegates this functionality to the MOS command of the same name.</p>
-</div>
-<div class="paragraph">
-<p>Remember therefore to use the <code>*</code> key when calling it.</p>
-</div>
-<div class="paragraph">
 <p>A command to edit specified lines. By changing only the line number, you can also use EDIT to duplicate a line.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+Instead of implementing an EDIT keyword, BBC BASIC (Z80) for the Agon Light delegates this functionality to the MOS command of the same name. Because EDIT is a MOS command, you need to prefix any call to it using <code>*</code>. It is very easy to trip up and forget this!
+</td>
+</tr>
+</table>
 </div>
 <div class="listingblock">
 <div class="content">
