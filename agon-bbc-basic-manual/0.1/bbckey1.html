@@ -152,8 +152,8 @@
     <li><a href="bbckey1.html">ABS-ENVELOPE</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/oldpatientsea/agon-bbc-basic-manual/edit/main/modules/ROOT/pages/bbckey1.adoc">Edit this Page</a></div>
-  </div>
+<div class="edit-this-page"><a href="https://github.com/oldpatientsea/agon-bbc-basic-manual/edit/main/modules/ROOT/pages/bbckey1.adoc">Edit this Page</a></div>
+</div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
@@ -1590,39 +1590,27 @@ y=(top+bottom+1) DIV 2</code></pre>
 <h2 id="_edit_e"><a class="anchor" href="#_edit_e"></a><span id="edit">EDIT</span>, E.</h2>
 <div class="sectionbody">
 <div class="paragraph">
+<p>Instead of implenting an EDIT keywords, BBC BASIC for Z80 (Agon) delegates this functionality to the MOS command of the same name.</p>
+</div>
+<div class="paragraph">
+<p>Remember therefore to use the <code>*</code> key when calling it.</p>
+</div>
+<div class="paragraph">
 <p>A command to edit or concatenate and edit the specified program line(s). The specified lines (including their line numbers) are listed as a single line. By changing only the line number, you can also use EDIT to duplicate a line.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">EDIT 230
-EDIT 200,230</code></pre>
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">*EDIT 230</code></pre>
 </div>
-</div>
-<div class="paragraph">
-<p>The codes shown are the default codes as supplied; they may be changed by editing the <strong>BBCDIST.MAC</strong> <a href="bbc1.html#configuration">patch program</a>:</p>
 </div>
 <div class="paragraph">
 <p>|==
-|Ctrl/E |Move the cursor up one line
-|Ctrl/X |Move the cursor down one line
-|Ctrl/S |Move the cursor left one character
-|Ctrl/D |Move the cursor right one character
-|Ctrl/A |Move the cursor to the start of the line
-|Ctrl/F |Move the cursor to the end of the line
-|Del |Backspace and delete
-|Ctrl/G |Delete the character at the cursor
-|Ctrl/U |Clear line to the left of the cursor
-|Ctrl/T |Clear the line to the right of the cursor
-|Ctrl/V |Insert a space at the cursor position
 |Enter |Enter the line and exit the edit mode
 |Esc |Abort and leave the line unchanged
 |==</p>
 </div>
 <div class="paragraph">
 <p>To abort the single line editor and leave the line unchanged, press &lt;Esc&gt;.</p>
-</div>
-<div class="paragraph">
-<p>You can use the <a href="bbckey1.html#edit">EDIT</a> command to edit and join (concatenate) program lines. When you use it to join lines, remember to delete any unwanted ones. EDIT on its own will start at the beginning of the program and concatenate as many lines as it can. This process will stop when the concatenated line length exceeds 255.</p>
 </div>
 <div class="sect2">
 <h3 id="_syntax_28"><a class="anchor" href="#_syntax_28"></a>Syntax</h3>
