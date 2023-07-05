@@ -1125,6 +1125,9 @@ degrees=180/PI*radians</code></pre>
 <p>5: Line</p>
 </li>
 <li>
+<p>69: Plot a single point</p>
+</li>
+<li>
 <p>80: Filled Triangle</p>
 </li>
 <li>
@@ -1134,6 +1137,33 @@ degrees=180/PI*radians</code></pre>
 <p>148: Circle passing through point x,y</p>
 </li>
 </ul>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+For those familiar with BASIC on the original BBC Micro, relative coordinates and plot modes like invert are not currently implemented. For example, PLOT 70 does not plot the inverse of a given point.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>BBC BASIC by default uses pixel coordinates that run from 0 to 1280 left-to-right and from 0 to 1024 bottom to top. This means that you can change modes and anything you draw will still appear in the same position on screen despite the physical resolution being different.</p>
+</div>
+<div class="paragraph">
+<p>The point 640x512 will always appear at the centre of the screen.</p>
+</div>
+<div class="paragraph">
+<p>NOTE:
+===
+You can switch to using normal (non-BBC BASIC, non-scaled) PLOT coordinates by calling:
+---
+VDU 23,0,192,0
+---
+===</p>
 </div>
 <div class="sect2">
 <h3 id="_syntax_19"><a class="anchor" href="#_syntax_19"></a>Syntax</h3>
